@@ -28,7 +28,7 @@
           <!--<h6 class="collapse-header">Cadastro</h6>-->
           <a class="collapse-item" href="seleciona-cliente.php">Cliente</a>
           <a class="collapse-item" href="seleciona-servico.php">Serviço</a>
-          <a class="collapse-item" href="#">Usuário</a>
+          <a class="collapse-item" href="seleciona-usuario.php">Usuário</a>
         </div>
       </div>
     </li>
