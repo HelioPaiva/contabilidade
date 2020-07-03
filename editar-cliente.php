@@ -22,7 +22,7 @@
 						<h1 class="h3 mb-0 text-gray-800">Atualizar Dados Cliente</h1>
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="home.php">Home</a></li>
-							<li class="breadcrumb-item"><a href="cliente.php">Cliente</a></li>
+							<li class="breadcrumb-item"><a href="seleciona-cliente.php">Cliente</a></li>
 							<li class="breadcrumb-item active" aria-current="page">Atualizar Cliente</li>
 						</ol>
 					</div>
@@ -112,7 +112,7 @@
 										</div>
 
 										<button type="submit" class="btn btn-primary">Atualizar</button>
-										<a href="cliente.php" class="btn btn-danger">Cancelar</a>
+										<a href="seleciona-cliente.php" class="btn btn-danger">Cancelar</a>
 									</form>
 								</div>
 							</div>

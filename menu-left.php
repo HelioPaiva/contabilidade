@@ -26,8 +26,8 @@
       <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
         <div class="bg-white py-2 collapse-inner rounded">
           <!--<h6 class="collapse-header">Cadastro</h6>-->
-          <a class="collapse-item" href="cliente.php">Cliente</a>
-          <a class="collapse-item" href="#">Serviço</a>
+          <a class="collapse-item" href="seleciona-cliente.php">Cliente</a>
+          <a class="collapse-item" href="seleciona-servico.php">Serviço</a>
           <a class="collapse-item" href="#">Usuário</a>
         </div>
       </div>

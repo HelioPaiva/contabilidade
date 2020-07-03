@@ -19,11 +19,11 @@
 				<!-- Container Fluid-->
 				<div class="container-fluid" id="container-wrapper">
 					<div class="d-sm-flex align-items-center justify-content-between mb-4">
-						<h1 class="h3 mb-0 text-gray-800">Novo Cliente</h1>
+						<h1 class="h3 mb-0 text-gray-800">Cadastro Cliente</h1>
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="home.php">Home</a></li>
-							<li class="breadcrumb-item"><a href="cliente.php">Cliente</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Novo Cliente</li>
+							<li class="breadcrumb-item"><a href="seleciona-cliente.php">Cliente</a></li>
+							<li class="breadcrumb-item active" aria-current="page">Cadastro Cliente</li>
 						</ol>
 					</div>
 
@@ -32,7 +32,7 @@
 							<!-- Form Basic -->
 							<div class="card mb-4">
 								<div class="card-body">
-									<form name="formCliente" action="novo-cliente.php" method="POST">
+									<form name="formCliente" action="cadastro-cliente.php" method="POST">
 										<div class="row">
 											<div class="form-group col-md-4">
 												<label for="idCNPJ">CNPJ</label>
@@ -112,7 +112,7 @@
 										</div>
 
 										<button type="submit" class="btn btn-primary">Cadastrar</button>
-										<a href="cliente.php" class="btn btn-danger">Cancelar</a>
+										<a href="seleciona-cliente.php" class="btn btn-danger">Cancelar</a>
 									</form>
 								</div>
 							</div>
