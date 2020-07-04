@@ -69,7 +69,7 @@
     </a>
     <div id="collapseFinance" class="collapse" aria-labelledby="headingcollapseFinance" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="#">Fluxo de Caixa</a>
+        <a class="collapse-item" href="seleciona-lancamento.php">Fluxo de Caixa</a>
         <a class="collapse-item" href="#">Importar Extrato Banco</a>
       </div>
     </div>
