@@ -42,7 +42,7 @@
     <div id="collapseNFE" class="collapse" aria-labelledby="headingcollapseNFE" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <a class="collapse-item" href="seleciona-emissao-nf.php">Emitir Nota Fiscal</a>
-        <!--<a class="collapse-item" href="#">Consultar NFE</a>-->
+        <a class="collapse-item" href="seleciona-status-nf.php">Consultar Nota Fiscal</a>
       </div>
     </div>
   </li>
