@@ -37,11 +37,11 @@
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseNFE"
       aria-expanded="true" aria-controls="collapseNFE">
       <i class="far fa-fw fa-address-card"></i>
-      <span>NFE</span>
+      <span>Nota Fiscal</span>
     </a>
     <div id="collapseNFE" class="collapse" aria-labelledby="headingcollapseNFE" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="#">Emitir NFE</a>
+        <a class="collapse-item" href="seleciona-emissao-nf.php">Emitir Nota Fiscal</a>
         <a class="collapse-item" href="#">Consultar NFE</a>
       </div>
     </div>
