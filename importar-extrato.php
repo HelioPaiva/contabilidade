@@ -22,7 +22,7 @@
 						<h1 class="h3 mb-0 text-gray-800">Importação de Extrato</h1>
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="home.php">Home</a></li>
-							<li class="breadcrumb-item"><a href="seleciona-cliente.php">Financeiro</a></li>
+							<li class="breadcrumb-item">Financeiro</li>
 							<li class="breadcrumb-item active" aria-current="page">Importação de Extrato</li>
 						</ol>
 					</div>

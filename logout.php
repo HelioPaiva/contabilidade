@@ -13,7 +13,7 @@ aria-hidden="true">
 		</div>
 		<div class="modal-footer">
 			<button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancelar</button>
-			<a href="login.php" class="btn btn-primary">Sair</a>
+			<a href="index.php" class="btn btn-primary">Sair</a>
 		</div>
 	</div>
 </div>
