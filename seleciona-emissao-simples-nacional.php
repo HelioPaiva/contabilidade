@@ -20,11 +20,11 @@
 				<!-- Container Fluid-->
 				<div class="container-fluid" id="container-wrapper">
          <div class="d-sm-flex align-items-center justify-content-between mb-4">
-          <h1 class="h3 mb-0 text-gray-800">Emissão Nota Fiscal</h1>
+          <h1 class="h3 mb-0 text-gray-800">Emissão Simples Nacional</h1>
           <ol class="breadcrumb">
            <li class="breadcrumb-item"><a href="home.php">Home</a></li>
-           <li class="breadcrumb-item">Nota Fiscal</li>
-           <li class="breadcrumb-item active" aria-current="page">Emissão de Nota Fiscal</li>
+           <li class="breadcrumb-item">Simples Nacional</li>
+           <li class="breadcrumb-item active" aria-current="page">Emissão de Simples Nacional</li>
          </ol>
        </div>
 
@@ -38,6 +38,7 @@
             <thead class="thead-light">
              <tr>
               <th>CNPJ</th>
+              <th>CPF Responsável</th>
               <th>Cliente</th>
               <th>Contato</th>
               <th>Ação</th>
@@ -46,6 +47,7 @@
           <tfoot>
            <tr>
             <th>CNPJ</th>
+            <th>CPF Responsável</th>
             <th>Cliente</th>
             <th>Contato</th>
             <th>Ação</th>
@@ -56,18 +58,20 @@
             <?php //foreach ($clientesBD as $clienteBD) : ?>
               <tr>
                 <td><?php echo '47.866.934/0001-74';//ucwords(strtolower($alunoBD['nome']));?></td>
+                <td><?php echo '999.999.999-99';//ucwords(strtolower($alunoBD['nome']));?></td>
                 <td><?php echo 'TICKET SERVICOS SA';//$alunoBD['celular'];?></td>
                 <td><?php echo 'ALAOR BARRA AGUIRRE';//ucwords(strtolower($alunoBD['responsavel']));?></td>
                 <td>
-                  <a href="emitir-nf.php?id=<?php //echo $alunoBD['id']; ?>" class="btn btn-sm btn-primary">Emitir Nota Fiscal</a>
+                  <a href="emitir-simples-nacional.php?id=<?php //echo $alunoBD['id']; ?>" class="btn btn-sm btn-primary">Emitir Simples Nacional</a>
                 </td>
               </tr>
               <tr>
                 <td><?php echo '60.741.303/0001-97';//ucwords(strtolower($alunoBD['nome']));?></td>
+                <td><?php echo '999.999.999-99';//ucwords(strtolower($alunoBD['nome']));?></td>
                 <td><?php echo 'AFRICA DDB BRASIL PUBLICIDADE LTDA.';//$alunoBD['celular'];?></td>
                 <td><?php echo 'DM9 HOLDINGS INC';//ucwords(strtolower($alunoBD['responsavel']));?></td>
                 <td>
-                  <a href="emitir-nf.php?id=<?php //echo $alunoBD['id']; ?>" class="btn btn-sm btn-primary">Emitir Nota Fiscal</a>
+                  <a href="emitir-simples-nacional.php?id=<?php //echo $alunoBD['id']; ?>" class="btn btn-sm btn-primary">Emitir Simples Nacional</a>
                 </td>
               </tr>
             <?php //endforeach; ?>

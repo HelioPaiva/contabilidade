@@ -42,7 +42,7 @@
     <div id="collapseNFE" class="collapse" aria-labelledby="headingcollapseNFE" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <a class="collapse-item" href="seleciona-emissao-nf.php">Emitir Nota Fiscal</a>
-        <a class="collapse-item" href="#">Consultar NFE</a>
+        <!--<a class="collapse-item" href="#">Consultar NFE</a>-->
       </div>
     </div>
   </li>
@@ -55,8 +55,8 @@
     </a>
     <div id="collapseSimplesNacional" class="collapse" aria-labelledby="headingcollapseSimplesNacional" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="#">Emitir Simples Nacional</a>
-        <a class="collapse-item" href="#">Consultar Simples Nacional</a>
+        <a class="collapse-item" href="seleciona-emissao-simples-nacional.php">Emitir Simples Nacional</a>
+        <!--<a class="collapse-item" href="#">Consultar Simples Nacional</a>-->
       </div>
     </div>
   </li>
