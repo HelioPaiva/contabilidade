@@ -88,6 +88,21 @@
   </div>
 </li>
 
+ <li class="nav-item">
+      <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseVendas"
+      aria-expanded="true" aria-controls="collapseVendas">
+      <i class="far fa-fw fa-address-card"></i>
+      <span>Vendas</span>
+    </a>
+    <div id="collapseVendas" class="collapse" aria-labelledby="headingcollapseVendas" data-parent="#accordionSidebar">
+      <div class="bg-white py-2 collapse-inner rounded">
+        <a class="collapse-item" href="seleciona-pedido.php">Pedidos</a>
+        <a class="collapse-item" href="">Produto</a>
+        <a class="collapse-item" href="">Categoria</a>
+      </div>
+    </div>
+  </li>
+
 <!--
 <li class="nav-item">
   <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
