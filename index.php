@@ -9,7 +9,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
   <link href="img/logo/logo.png" rel="icon">
-  <title>RuangAdmin - Login</title>
+  <title>Clickou</title>
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="css/ruang-admin.min.css" rel="stylesheet">
@@ -27,25 +27,23 @@
               <div class="col-lg-12">
                 <div class="login-form">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Login Contabilidade</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Recuperar Senha</h1>
                   </div>
                   <form class="user">
                     <div class="form-group">
                       <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
-                        placeholder="Entre com seu e-mail">
+                      placeholder="Entre com seu e-mail">
                     </div>
                     <div class="form-group">
                       <input type="password" class="form-control" id="exampleInputPassword" placeholder="Entre com sua senha">
                     </div>
-                    <!--
+                    
                     <div class="form-group">
-                      <div class="custom-control custom-checkbox small" style="line-height: 1.5rem;">
-                        <input type="checkbox" class="custom-control-input" id="customCheck">
-                        <label class="custom-control-label" for="customCheck">Remember
-                          Me</label>
+                      <div class="text-center">
+                        <a class="font-weight-bold small" href="recuperar-senha.php">Esqueceu sua senha ?</a>
                       </div>
                     </div>
-                  -->
+                    
                     <div class="form-group">
                       <a href="home.php" class="btn btn-primary btn-block">Login</a>
                     </div>
@@ -57,12 +55,12 @@
                       <i class="fab fa-facebook-f fa-fw"></i> Login com conta Facebook
                     </a>
                   </form>
-                  <!--
+
                   <hr>
                   <div class="text-center">
-                    <a class="font-weight-bold small" href="register.html">Create an Account!</a>
+                    <a class="font-weight-bold small" href="#">Crie sua conta!</a>
                   </div>
-                -->
+
                   <div class="text-center">
                   </div>
                 </div>
