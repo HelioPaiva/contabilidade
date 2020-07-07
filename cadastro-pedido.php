@@ -132,7 +132,7 @@
 														</div>
 														<br>
 														<button type="submit" class="btn btn-primary">Fechar Pedido</button>
-										<a href="seleciona-pedido.php" class="btn btn-danger">Cancelar</a>
+														<a href="seleciona-pedido.php" class="btn btn-danger">Cancelar</a>
 													</div>
 												</div>
 												<!--Row-->

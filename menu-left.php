@@ -98,7 +98,7 @@
       <div class="bg-white py-2 collapse-inner rounded">
         <a class="collapse-item" href="seleciona-pedido.php">Pedidos</a>
         <a class="collapse-item" href="seleciona-produto.php">Produto</a>
-        <a class="collapse-item" href="">Categoria</a>
+        <a class="collapse-item" href="seleciona-categoria.php">Categoria</a>
       </div>
     </div>
   </li>
