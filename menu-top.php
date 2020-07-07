@@ -170,11 +170,11 @@ aria-labelledby="messagesDropdown">
     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
     Perfil
   </a>
-  <a class="dropdown-item" href="configuracoes.php">
+  <a class="dropdown-item" href="configuracoes-usuario.php">
     <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
     Configurações
   </a>
-  <a class="dropdown-item" href="#">
+  <a class="dropdown-item" href="registro-atividades.php">
     <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
     Registro de Atividades
   </a>
