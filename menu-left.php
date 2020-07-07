@@ -97,7 +97,7 @@
     <div id="collapseVendas" class="collapse" aria-labelledby="headingcollapseVendas" data-parent="#accordionSidebar">
       <div class="bg-white py-2 collapse-inner rounded">
         <a class="collapse-item" href="seleciona-pedido.php">Pedidos</a>
-        <a class="collapse-item" href="">Produto</a>
+        <a class="collapse-item" href="seleciona-produto.php">Produto</a>
         <a class="collapse-item" href="">Categoria</a>
       </div>
     </div>
