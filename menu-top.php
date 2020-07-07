@@ -72,7 +72,7 @@
           Emitir NFE cliente Bradesco
         </div>
       </a>
-      <a class="dropdown-item text-center small text-gray-500" href="#">
+      <a class="dropdown-item text-center small text-gray-500" href="alertas.php">
       Mostrar todos os alertas</a>
     </div>
   </li>
@@ -108,7 +108,7 @@
       <div class="small text-gray-500">Rodrigo Silva</div>
     </div>
   </a>
-  <a class="dropdown-item text-center small text-gray-500" href="#">Todas as Mensagens</a>
+  <a class="dropdown-item text-center small text-gray-500" href="mensagens.php">Todas as Mensagens</a>
 </div>
 </li>
 <li class="nav-item dropdown no-arrow mx-1">
@@ -155,7 +155,7 @@ aria-labelledby="messagesDropdown">
     </div>
   </div>
 </a>
-<a class="dropdown-item text-center small text-gray-500" href="#">Todas as Tarefas</a>
+<a class="dropdown-item text-center small text-gray-500" href="tarefas.php">Todas as Tarefas</a>
 </div>
 </li>
 <div class="topbar-divider d-none d-sm-block"></div>

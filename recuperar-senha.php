@@ -35,7 +35,7 @@
                       placeholder="Entre com seu e-mail">
                     </div>
                   <div class="form-group">
-                    <a href="home.php" class="btn btn-primary btn-block">Recuperar</a>
+                    <a href="#" class="btn btn-primary btn-block">Recuperar</a>
                   </div>
                 </form>
                 <div class="text-center">
