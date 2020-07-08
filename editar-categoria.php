@@ -40,7 +40,7 @@
 											</div>
 										</div>
 
-										<button type="submit" class="btn btn-primary">Atualizar</button>
+										<button type="submit" class="btn btn-primary">Atualizars</button>
 										<a href="seleciona-categoria.php" class="btn btn-danger">Cancelar</a>
 									</form>
 								</div>

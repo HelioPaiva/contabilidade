@@ -5,7 +5,7 @@ class conn {
 
 	public static function getConn(){
 		$db_host = "localhost";
-		$db_name = "mori";
+		$db_name = "erp";
 		$db_user = "root";
 		$db_password = "";
 

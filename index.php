@@ -1,3 +1,7 @@
+<?php
+  require_once 'control/usuario.php';
+  login();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -27,15 +31,15 @@
               <div class="col-lg-12">
                 <div class="login-form">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Recuperar Senha</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Acessar</h1>
                   </div>
-                  <form class="user">
+                  <form class="user" action="index.php" method="POST">
                     <div class="form-group">
-                      <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
+                      <input type="email" class="form-control" name="email" required=""
                       placeholder="Entre com seu e-mail">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control" id="exampleInputPassword" placeholder="Entre com sua senha">
+                      <input type="password" class="form-control" name="password" required="" placeholder="Entre com sua senha">
                     </div>
                     
                     <div class="form-group">
@@ -45,8 +49,10 @@
                     </div>
                     
                     <div class="form-group">
-                      <a href="home.php" class="btn btn-primary btn-block">Login</a>
+                      <button type="submit" name="btn" value="envio" class="btn btn-primary btn-block">Login</button>
+                      <!--<a href="home.php" class="btn btn-primary btn-block">Login</a>-->
                     </div>
+                    <!--
                     <hr>
                     <a href="index.html" class="btn btn-google btn-block">
                       <i class="fab fa-google fa-fw"></i> Login com conta Google
@@ -54,6 +60,7 @@
                     <a href="index.html" class="btn btn-facebook btn-block">
                       <i class="fab fa-facebook-f fa-fw"></i> Login com conta Facebook
                     </a>
+                  -->
                   </form>
 
                   <hr>

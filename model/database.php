@@ -1,6 +1,6 @@
 <?php
 
-require_once 'model/conn.php';
+require_once 'conn.php';
 
 class database {
 
