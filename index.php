@@ -1,6 +1,6 @@
 <?php
-  require_once 'control/usuario.php';
-  login();
+require_once 'control/usuario.php';
+login();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,6 +33,11 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Acessar</h1>
                   </div>
+                  <?php if (!empty($_GET['login'])) {?>
+                    <div class="alert alert-danger text-center" role="alert">
+                      Login ou Senha incorretos!
+                    </div>
+                  <?php } ?>
                   <form class="user" action="index.php" method="POST">
                     <div class="form-group">
                       <input type="email" class="form-control" name="email" required=""
@@ -52,6 +57,7 @@
                       <button type="submit" name="btn" value="envio" class="btn btn-primary btn-block">Login</button>
                       <!--<a href="home.php" class="btn btn-primary btn-block">Login</a>-->
                     </div>
+
                     <!--
                     <hr>
                     <a href="index.html" class="btn btn-google btn-block">
@@ -61,15 +67,15 @@
                       <i class="fab fa-facebook-f fa-fw"></i> Login com conta Facebook
                     </a>
                   -->
-                  </form>
+                </form>
 
+                  <!--
                   <hr>
                   <div class="text-center">
                     <a class="font-weight-bold small" href="#">Crie sua conta!</a>
                   </div>
-
-                  <div class="text-center">
-                  </div>
+                -->
+                <div class="text-center">
                 </div>
               </div>
             </div>
@@ -78,11 +84,12 @@
       </div>
     </div>
   </div>
-  <!-- Login Content -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-  <script src="js/ruang-admin.min.js"></script>
+</div>
+<!-- Login Content -->
+<script src="vendor/jquery/jquery.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="js/ruang-admin.min.js"></script>
 </body>
 
 </html>

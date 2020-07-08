@@ -1,3 +1,7 @@
+<?php
+require_once 'control/usuario.php';
+logout();
+?>
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLogout"
 aria-hidden="true">
 <div class="modal-dialog" role="document">
@@ -13,7 +17,7 @@ aria-hidden="true">
 		</div>
 		<div class="modal-footer">
 			<button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancelar</button>
-			<a href="index.php" class="btn btn-primary">Sair</a>
+			<a href="logout.php" class="btn btn-primary">Sair</a>
 		</div>
 	</div>
 </div>

@@ -98,17 +98,29 @@ function edit(){
 }
 
 function login (){
+	session_start();
 	if (isset($_POST['btn'])) {
 		$email = $_POST['email'];
 		$password = $_POST['password'];
 		$usuario = new usuario();
-		$usuarioBD = $usuario->login($email);
-		if ($usuarioBD['email'] == $email && $usuarioBD['password'] == $password) {
+		$usuarioBD = $usuario->login($email,$password);
+		if ($usuarioBD['email'] == $email && $usuarioBD['password'] == $password && $usuarioBD['idStatus'] == 1) {
+			$_SESSION['idUsuario'] = $usuarioBD['id'];
+			$_SESSION['idUsuario'] = $email;
+			$_SESSION['usuario'] = $usuarioBD['nome'];
+			$_SESSION['perfil'] = $usuarioBD['perfil'];
+			$_SESSION['login'] = true;
 			header('Location: home.php');
 		}else{
-			header('Location: index.php?status=false'); 
+			$_SESSION['login'] = false;
+			header('Location: index.php?login=false'); 
 		}
 	}
+}
+
+function logout (){
+	session_destroy();
+	header('Location: index.php'); 
 }
 
 

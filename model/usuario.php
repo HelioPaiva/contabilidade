@@ -104,13 +104,16 @@ class usuario {
 		return $result;
 	}
 
-	public function login($email){
+	public function login($email, $password){
 		$db = new database();
 
-		$sql = "SELECT *
-		FROM usuario
-		Where email = '".$email."'";
-
+		$sql = "SELECT *, p.perfil
+				FROM usuario u
+				LEFT JOIN perfil p
+				ON u.idPerfil = p.id
+				where email = '".$email."' 
+				and password = '".$password."' 
+				and idStatus = 1";
 		$result = $db->read($sql);
 		return $result;
 	}
