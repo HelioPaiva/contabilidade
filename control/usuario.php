@@ -106,8 +106,8 @@ function login (){
 		$usuarioBD = $usuario->login($email,$password);
 		if ($usuarioBD['email'] == $email && $usuarioBD['password'] == $password && $usuarioBD['idStatus'] == 1) {
 			$_SESSION['idUsuario'] = $usuarioBD['id'];
-			$_SESSION['idUsuario'] = $email;
-			$_SESSION['usuario'] = $usuarioBD['nome'];
+			$_SESSION['idEmail'] = $email;
+			$_SESSION['nome'] = $usuarioBD['nome'];
 			$_SESSION['perfil'] = $usuarioBD['perfil'];
 			$_SESSION['login'] = true;
 			header('Location: home.php');

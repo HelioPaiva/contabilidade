@@ -1,6 +1,12 @@
 <?php
-//require_once 'controle/servico.php';
-//readAll();
+session_start();
+if (!isset($_SESSION['login'])){
+  session_destroy();
+  header("Location: index.php");
+}
+require_once 'control/alerta.php';
+edit();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,88 +46,97 @@
           </div>
         -->
 
-          <div class="table-responsive p-3">
-           <table class="table align-items-center table-flush table-hover" id="dataTableHover">
-            <thead class="thead-light">
-             <tr>
-              <th>Código</th>
-              <th>Descrição</th>
-              <th>Data</th>
-              <!--<th>Ação</th>-->
-            </tr>
-          </thead>
-          <tfoot>
+        <div class="table-responsive p-3">
+         <table class="table align-items-center table-flush table-hover" id="dataTableHover">
+          <thead class="thead-light">
            <tr>
-              <th>Código</th>
-              <th>Descrição</th>
-              <th>Data</th>
-              <!--<th>Ação</th>-->
+            <th>Código</th>
+            <th>Descrição</th>
+            <th>Data</th>
+            <th>Status</th>
+            <th>Ação</th>
+          </tr>
+        </thead>
+        <tfoot>
+         <tr>
+          <th>Código</th>
+          <th>Descrição</th>
+          <th>Data</th>
+          <th>Status</th>
+          <th>Ação</th>
+        </tr>
+      </tfoot>
+      <tbody>
+        <?php if ($alertasBD) : ?>
+          <?php foreach ($alertasBD as $alertaBD) : ?>
+            <tr>
+              <td><?php echo $alertaBD['id'];?></td>
+              <td><?php echo $alertaBD['descricao'];?></td>
+              <td><?php echo date('d/m/Y', strtotime($alertaBD['dataCadastro']));?></td>
+              <td><?php echo $alertaBD['alertaLido'];?></td>
+              <td>
+                <button class="visualizar btn btn-xs btn-primary" data-id="<?php echo $alertaBD['id'];?>" data-alerta="<?php echo $alertaBD['descricao'];?>">
+                  Visualizar
+                </button>
+              </td>
             </tr>
-        </tfoot>
-        <tbody>
-          <?php //if ($servicosBD) : ?>
-            <?php //foreach ($clientesBD as $servicoBD) : ?>
-              <tr>
-                <td><?php echo '0001';//ucwords(strtolower($servicoBD['nome']));?></td>
-                <td><?php echo 'Novo cliente cadastrado';//$servicoBDBD['celular'];?></td>
-                <td><?php echo '01/07/2020 20:34';//ucwords(strtolower($servicoBDBD['responsavel']));?></td>
-                <!--
-                <td>
-                  <a href="editar-servico.php?id=<?php //echo $servicoBD['id']; ?>" class="btn btn-sm btn-primary">Editar</a>
-                </td>
-              -->
-              </tr>
-              <tr>
-                <td><?php echo '0002';//ucwords(strtolower($alunoBD['nome']));?></td>
-                <td><?php echo 'Fechar fluxo de caixa';//$alunoBD['celular'];?></td>
-                <td><?php echo '02/07/2020 12:34';//ucwords(strtolower($alunoBD['responsavel']));?></td>
-                <!--
-                <td>
-                  <a href="editar-servico.php?id=<?php //echo $servicoBD['id']; ?>" class="btn btn-sm btn-primary">Editar</a>
-                </td>
-              -->
-              </tr>
-            <?php //endforeach; ?>
-          <?php //endif; ?>
-        </tbody>
-      </table>
-    </div>
+          <?php endforeach; ?>
+        <?php endif; ?>
+      </tbody>
+    </table>
   </div>
+</div>
 </div>
 </div>
 <!--Row-->
 
 </div>
 
-<!--Modal-->
-<?php 
-if(isset($_GET['r'])){
-  ?>
-  <div class="modal fade" id="msgModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLogout"
+  <!-- Modal Visualizar Alerta -->
+  <div class="modal fade" id="descricaoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelDescricao"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabelLogout">Portal Mori</h5>
+        <h5 class="modal-title" id="exampleModalLabelDescricao">Alerta</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <p>Cadastro Realizado Com Sucesso!</p>
+        <p><span class="alerta"></span></p>
       </div>
       <div class="modal-footer">
-        <a href="cadastro-aluno.php" class="btn btn-primary">OK</a>
+        <!--<button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>-->
+        <a href="#" class="btn btn-primary update-yes">OK</a>
       </div>
     </div>
   </div>
 </div>
-<?php } ?>
 
 
 
 <!-- Modal Logout -->
-<?php include 'logout.php'; ?>
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLogout"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabelLogout">Oh não!</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Tem certeza que deseja sair?</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancelar</button>
+      <a href="logout.php" class="btn btn-primary">Sair</a>
+    </div>
+  </div>
+</div>
+</div>
 
 </div>
 
@@ -151,6 +166,16 @@ if(isset($_GET['r'])){
     $('#msgModal').modal('show');
       $('#dataTable').DataTable(); // ID From dataTable 
       $('#dataTableHover').DataTable(); // ID From dataTable with Hover
+    });
+  </script>
+
+  <script>
+      $('.visualizar').on('click', function(){
+      var alerta = $(this).data('alerta'); // vamos buscar o valor do atributo data-name que temos no botão que foi clicado
+      var id = $(this).data('id'); // vamos buscar o valor do atributo data-id
+      $('span.alerta').text(alerta); // inserir na o nome na pergunta de confirmação dentro da modal
+      $('a.update-yes').attr('href', 'alertas.php?id=' +id); // mudar dinamicamente o link, href do botão confirmar da modal
+      $('#descricaoModal').modal('show'); // modal aparece
     });
   </script>
 </body>

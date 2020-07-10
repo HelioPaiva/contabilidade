@@ -34,9 +34,17 @@
 								<div class="card-body">
 									<form name="formUsuario" action="cadastro-usuario.php" method="POST">
 										<div class="row">
-											<div class="form-group col-md-8">
+											<div class="form-group col-md-6">
 												<label for="idNome">Nome</label>
 												<input type="text" class="form-control" id="idNome" name="nome" required="">
+											</div>
+											<div class="form-group col-md-2">
+												<label for="idSexo">Sexo</label>
+												<select class="form-control mb-3" name="sexo" required="">
+													<option value="">Selecione</option>
+													<option value="M">Masculino</option>
+													<option value="F">Feminino</option>
+												</select>
 											</div>
 										</div>
 										<div class="row">

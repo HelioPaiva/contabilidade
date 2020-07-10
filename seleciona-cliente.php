@@ -61,26 +61,26 @@
         </tfoot>
         <tbody>
           <?php //if ($alunosBD) : ?>
-            <?php //foreach ($clientesBD as $clienteBD) : ?>
-              <tr>
-                <td><?php echo '47.866.934/0001-74';//ucwords(strtolower($alunoBD['nome']));?></td>
-                <td><?php echo 'TICKET SERVICOS SA';//$alunoBD['celular'];?></td>
-                <td><?php echo 'ALAOR BARRA AGUIRRE';//ucwords(strtolower($alunoBD['responsavel']));?></td>
-                <td><?php echo '(11) 4003-9000';//$alunoBD['dataNascimento'];?></td>
-                <td>
-                  <a href="editar-cliente.php?id=<?php //echo $alunoBD['id']; ?>" class="btn btn-sm btn-primary">Editar</a>
-                </td>
-              </tr>
-              <tr>
-                <td><?php echo '60.741.303/0001-97';//ucwords(strtolower($alunoBD['nome']));?></td>
-                <td><?php echo 'AFRICA DDB BRASIL PUBLICIDADE LTDA.';//$alunoBD['celular'];?></td>
-                <td><?php echo 'DM9 HOLDINGS INC';//ucwords(strtolower($alunoBD['responsavel']));?></td>
-                <td><?php echo '(11) 9999-9999';//$alunoBD['dataNascimento'];?></td>
-                <td>
-                  <a href="editar-cliente.php?id=<?php //echo $alunoBD['id']; ?>" class="btn btn-sm btn-primary">Editar</a>
-                </td>
-              </tr>
-            <?php //endforeach; ?>
+          <?php //foreach ($clientesBD as $clienteBD) : ?>
+          <tr>
+            <td><?php echo '47.866.934/0001-74';//ucwords(strtolower($alunoBD['nome']));?></td>
+            <td><?php echo 'TICKET SERVICOS SA';//$alunoBD['celular'];?></td>
+            <td><?php echo 'ALAOR BARRA AGUIRRE';//ucwords(strtolower($alunoBD['responsavel']));?></td>
+            <td><?php echo '(11) 4003-9000';//$alunoBD['dataNascimento'];?></td>
+            <td>
+              <a href="editar-cliente.php?id=<?php //echo $alunoBD['id']; ?>" class="btn btn-sm btn-primary">Editar</a>
+            </td>
+          </tr>
+          <tr>
+            <td><?php echo '60.741.303/0001-97';//ucwords(strtolower($alunoBD['nome']));?></td>
+            <td><?php echo 'AFRICA DDB BRASIL PUBLICIDADE LTDA.';//$alunoBD['celular'];?></td>
+            <td><?php echo 'DM9 HOLDINGS INC';//ucwords(strtolower($alunoBD['responsavel']));?></td>
+            <td><?php echo '(11) 9999-9999';//$alunoBD['dataNascimento'];?></td>
+            <td>
+              <a href="editar-cliente.php?id=<?php //echo $alunoBD['id']; ?>" class="btn btn-sm btn-primary">Editar</a>
+            </td>
+          </tr>
+          <?php //endforeach; ?>
           <?php //endif; ?>
         </tbody>
       </table>
@@ -120,7 +120,26 @@ if(isset($_GET['r'])){
 
 
 <!-- Modal Logout -->
-<?php include 'logout.php'; ?>
+<div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelLogout"
+aria-hidden="true">
+<div class="modal-dialog" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabelLogout">Oh não!</h5>
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <p>Tem certeza que deseja sair?</p>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-primary" data-dismiss="modal">Cancelar</button>
+      <a href="logout.php" class="btn btn-primary">Sair</a>
+    </div>
+  </div>
+</div>
+</div>
 
 </div>
 

@@ -1,114 +1,105 @@
-       <!-- TopBar -->
-       <nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
-        <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
-          <i class="fa fa-bars"></i>
-        </button>
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item dropdown no-arrow">
-            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-search fa-fw"></i>
-          </a>
+<?php
+require_once 'control/alerta.php';
+readAllNoLida();
+?>
 
-          <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
-          aria-labelledby="searchDropdown">
-          <form class="navbar-search">
-            <div class="input-group">
-              <input type="text" class="form-control bg-light border-1 small" placeholder="O que você quer procurar?"
-              aria-label="Search" aria-describedby="basic-addon2" style="border-color: #3f51b5;">
-              <div class="input-group-append">
-                <button class="btn btn-primary" type="button">
-                  <i class="fas fa-search fa-sm"></i>
-                </button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </li>
+<!-- TopBar -->
+<nav class="navbar navbar-expand navbar-light bg-navbar topbar mb-4 static-top">
+  <button id="sidebarToggleTop" class="btn btn-link rounded-circle mr-3">
+    <i class="fa fa-bars"></i>
+  </button>
+  <ul class="navbar-nav ml-auto">
+    <li class="nav-item dropdown no-arrow">
+      <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false">
+      <i class="fas fa-search fa-fw"></i>
+    </a>
 
-      <li class="nav-item dropdown no-arrow mx-1">
-        <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
-        aria-haspopup="true" aria-expanded="false">
-        <i class="fas fa-bell fa-fw"></i>
-        <span class="badge badge-danger badge-counter">3+</span>
-      </a>
-      <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-      aria-labelledby="alertsDropdown">
-      <h6 class="dropdown-header">
-        Alertas
-      </h6>
+    <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
+    aria-labelledby="searchDropdown">
+    <form class="navbar-search">
+      <div class="input-group">
+        <input type="text" class="form-control bg-light border-1 small" placeholder="O que você quer procurar?"
+        aria-label="Search" aria-describedby="basic-addon2" style="border-color: #3f51b5;">
+        <div class="input-group-append">
+          <button class="btn btn-primary" type="button">
+            <i class="fas fa-search fa-sm"></i>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</li>
 
-      <a class="dropdown-item d-flex align-items-center" href="#">
-        <div class="mr-3">
-          <div class="icon-circle bg-primary">
-            <i class="fas fa-file-alt text-white"></i>
-          </div>
-        </div>
-        <div>
-          <div class="small text-gray-500">28 de Junho, 2020</div>
-          <span class="font-weight-bold">Novo cliente cadastrado</span>
-        </div>
-      </a>
+<li class="nav-item dropdown no-arrow mx-1">
+  <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown"
+  aria-haspopup="true" aria-expanded="false">
+  <i class="fas fa-bell fa-fw"></i>
+  <?php if (count($alertasNaoLidoBD) > 0): ?>
+    <span class="badge badge-danger badge-counter"><?php echo count($alertasNaoLidoBD);?>+</span>
+  <?php endif ?>
+</a>
+<div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+aria-labelledby="alertsDropdown">
+<h6 class="dropdown-header">
+  Alertas
+</h6>
 
-      <a class="dropdown-item d-flex align-items-center" href="#">
-        <div class="mr-3">
-          <div class="icon-circle bg-success">
-            <i class="fas fa-donate text-white"></i>
-          </div>
+<?php if ($alertasNaoLidoBD) : ?>
+  <?php 
+    foreach ($alertasNaoLidoBD as $alertaBD) : ?>
+    <a class="dropdown-item d-flex align-items-center" href="alertas.php">
+      <div class="mr-3">
+        <div class="icon-circle bg-primary">
+          <i class="fas fa-file-alt text-white"></i>
         </div>
-        <div>
-          <div class="small text-gray-500">29 de Junho, 2020</div>
-          Fechar fluxo de caixa
-        </div>
-      </a>
-      <a class="dropdown-item d-flex align-items-center" href="#">
-        <div class="mr-3">
-          <div class="icon-circle bg-warning">
-            <i class="fas fa-exclamation-triangle text-white"></i>
-          </div>
-        </div>
-        <div>
-          <div class="small text-gray-500">30 de Junho, 2020</div>
-          Emitir NFE cliente Bradesco
-        </div>
-      </a>
-      <a class="dropdown-item text-center small text-gray-500" href="alertas.php">
-      Mostrar todos os alertas</a>
-    </div>
-  </li>
+      </div>
+      <div>
+        <div class="small text-gray-500"><?php echo  $alertaBD['dataCadastroFormatada']; ?></div>
+        <span class="text-truncate"><?php echo $alertaBD['descricao']; ?></span>
+      </div>
+    </a>
+  <?php endforeach; ?>
+  <?php else: echo '<span class="dropdown-item text-center font-weight-bold">
+  Sem alertas</span>'?>
+<?php endif; ?>
+<a class="dropdown-item text-center small text-gray-500" href="alertas.php">
+  Mostrar todos os alertas</a>
+</div>
+</li>
 
-  <li class="nav-item dropdown no-arrow mx-1">
-    <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
-    aria-haspopup="true" aria-expanded="false">
-    <i class="fas fa-envelope fa-fw"></i>
-    <span class="badge badge-warning badge-counter">2</span>
-  </a>
-  <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
-  aria-labelledby="messagesDropdown">
-  <h6 class="dropdown-header">
-    Mensagens
-  </h6>
-  <a class="dropdown-item d-flex align-items-center" href="#">
-    <div class="dropdown-list-image mr-3">
-      <img class="rounded-circle" src="img/man.png" style="max-width: 60px" alt="">
-      <div class="status-indicator bg-success"></div>
-    </div>
-    <div class="font-weight-bold">
-      <div class="text-truncate">Olá! Gostaria de saber se você pode me ajudar com um problema</div>
-      <div class="small text-gray-500">Eduardo</div>
-    </div>
-  </a>
-  <a class="dropdown-item d-flex align-items-center" href="#">
-    <div class="dropdown-list-image mr-3">
-      <img class="rounded-circle" src="img/girl.png" style="max-width: 60px" alt="">
-      <div class="status-indicator bg-default"></div>
-    </div>
-    <div>
-      <div class="text-truncate">Favor emitir guia de pagamento simples nacional</div>
-      <div class="small text-gray-500">Rodrigo Silva</div>
-    </div>
-  </a>
-  <a class="dropdown-item text-center small text-gray-500" href="mensagens.php">Todas as Mensagens</a>
+<li class="nav-item dropdown no-arrow mx-1">
+  <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
+  aria-haspopup="true" aria-expanded="false">
+  <i class="fas fa-envelope fa-fw"></i>
+  <span class="badge badge-warning badge-counter">2</span>
+</a>
+<div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
+aria-labelledby="messagesDropdown">
+<h6 class="dropdown-header">
+  Mensagens
+</h6>
+<a class="dropdown-item d-flex align-items-center" href="#">
+  <div class="dropdown-list-image mr-3">
+    <img class="rounded-circle" src="img/man.png" style="max-width: 60px" alt="">
+    <div class="status-indicator bg-success"></div>
+  </div>
+  <div class="font-weight-bold">
+    <div class="text-truncate">Olá! Gostaria de saber se você pode me ajudar com um problema</div>
+    <div class="small text-gray-500">Eduardo</div>
+  </div>
+</a>
+<a class="dropdown-item d-flex align-items-center" href="#">
+  <div class="dropdown-list-image mr-3">
+    <img class="rounded-circle" src="img/girl.png" style="max-width: 60px" alt="">
+    <div class="status-indicator bg-default"></div>
+  </div>
+  <div>
+    <div class="text-truncate">Favor emitir guia de pagamento simples nacional</div>
+    <div class="small text-gray-500">Rodrigo Silva</div>
+  </div>
+</a>
+<a class="dropdown-item text-center small text-gray-500" href="mensagens.php">Todas as Mensagens</a>
 </div>
 </li>
 <li class="nav-item dropdown no-arrow mx-1">
@@ -163,7 +154,7 @@ aria-labelledby="messagesDropdown">
   <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
   aria-haspopup="true" aria-expanded="false">
   <img class="img-profile rounded-circle" src="img/boy.png" style="max-width: 60px">
-  <span class="ml-2 d-none d-lg-inline text-white small">Rafael Custódio</span>
+  <span class="ml-2 d-none d-lg-inline text-white small"><?php echo $_SESSION['nome']?></span>
 </a>
 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
   <a class="dropdown-item" href="perfil.php">
