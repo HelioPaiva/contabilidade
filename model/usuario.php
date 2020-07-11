@@ -118,5 +118,12 @@ class usuario {
 		return $result;
 	}
 
+	public function atualizacaoDeSenha($id, $password){
+		$db = new database();
+		$sql = "UPDATE usuario set password = '".$password."' where id = ".$id;
+		$db->edit($sql);
+
+	}
+
 
 }

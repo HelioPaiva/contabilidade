@@ -1,11 +1,18 @@
 <?php
-//require_once 'controle/usuario.php';
-//add();
+session_start();
+if (!isset($_SESSION['login'])){
+	session_destroy();
+	header("Location: index.php");
+}
+require_once 'control/usuario.php';
+atualizacaoDeSenha();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <!--head -->
 <?php include 'head.php'; ?>
+
 <body id="page-top">
 	<div id="wrapper">
 		<!--Menu Left -->
@@ -28,8 +35,8 @@
 					</div>
 
 					<div class="row">
+						<!--
 						<div class="col-lg-6">
-							<!-- Form Sizing -->
 							<div class="card mb-6">
 								<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
 									<h6 class="m-0 font-weight-bold text-primary">Atualização Cadastral</h6>
@@ -52,7 +59,7 @@
 								</div>
 							</div>
 						</div>
-
+						-->
 
 						<div class="col-lg-6">
 							<!-- Form Basic -->
@@ -61,16 +68,16 @@
 									<h6 class="m-0 font-weight-bold text-primary">Alteração de senha</h6>
 								</div>
 								<div class="card-body">
-									<form>
+									<form name="formPerfil" action="perfil.php" method="POST" onsubmit="return validaNovaSenha(this);">
 										<div class="form-group">
-											<label for="exampleInputEmail1">Nova Senha</label>
-											<input type="password" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-											placeholder="">
+											<label for="idNovaPassword">Nova Senha</label>
+											<input type="password" name="novaPassword" class="form-control" id="idNovaPassword" aria-describedby=""
+											placeholder="" maxlength="25" required="">
 
 										</div>
 										<div class="form-group">
 											<label for="exampleInputPassword1">Confirme a nova senha</label>
-											<input type="password" class="form-control" id="exampleInputPassword1" placeholder="">
+											<input type="password" name="confirmaNovaPassword" class="form-control" id="idConfirmaNovaPassword" placeholder="" maxlength="25" required="">
 										</div>
 
 										<button type="submit" class="btn btn-primary">Atualizar</button>
@@ -88,22 +95,19 @@
 				</div>
 			</div>
 
-				<!-- Modal Logout -->
-					<?php include 'logout.php'; ?>
+		<!-- Footer -->
+		<?php include 'footer.php'; ?>
 
-					<!-- Footer -->
-					<?php include 'footer.php'; ?>
+		<!-- Scroll to top -->
+		<a class="scroll-to-top rounded" href="#page-top">
+			<i class="fas fa-angle-up"></i>
+		</a>
 
-			<!-- Scroll to top -->
-			<a class="scroll-to-top rounded" href="#page-top">
-				<i class="fas fa-angle-up"></i>
-			</a>
-
-			<script src="vendor/jquery/jquery.min.js"></script>
-			<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-			<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
-			<script src="js/ruang-admin.min.js"></script>
-			<script src="vendor/chart.js/Chart.min.js"></script>
-			<script src="js/demo/chart-area-demo.js"></script>  
-		</body>
-		</html>
+		<script src="vendor/jquery/jquery.min.js"></script>
+		<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+		<script src="vendor/jquery-easing/jquery.easing.min.js"></script>
+		<script src="js/ruang-admin.min.js"></script>
+		<script src="vendor/chart.js/Chart.min.js"></script>
+		<script src="js/demo/chart-area-demo.js"></script>  
+	</body>
+	</html>

@@ -1,6 +1,9 @@
 <?php
-//require_once 'controle/usuario.php';
-//add();
+session_start();
+if (!isset($_SESSION['login'])){
+	session_destroy();
+	header("Location: index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -61,9 +64,6 @@
 
 				</div>
 			</div>
-
-			<!-- Modal Logout -->
-			<?php include 'logout.php'; ?>
 
 			<!-- Footer -->
 			<?php include 'footer.php'; ?>

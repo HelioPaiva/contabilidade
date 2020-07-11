@@ -44,7 +44,7 @@ login();
                       placeholder="Entre com seu e-mail">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control" name="password" required="" placeholder="Entre com sua senha">
+                      <input type="password" maxlength="25" class="form-control" name="password" required="" placeholder="Entre com sua senha">
                     </div>
                     
                     <div class="form-group">

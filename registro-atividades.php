@@ -1,6 +1,9 @@
 <?php
-//require_once 'controle/usuario.php';
-//readAll();
+session_start();
+if (!isset($_SESSION['login'])){
+  session_destroy();
+  header("Location: index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -119,11 +122,6 @@ if(isset($_GET['r'])){
   </div>
 </div>
 <?php } ?>
-
-
-
-<!-- Modal Logout -->
-<?php include 'logout.php'; ?>
 
 </div>
 

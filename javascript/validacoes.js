@@ -2,12 +2,13 @@ function validaDados(){
     var cpfAluno = document.getElementById("idCPF").value.replace(".","").replace(".","").replace("-","");
     var cpfResponsavel = document.getElementById("idCPFResponsavel").value.replace(".","").replace(".","").replace("-","");
 
+
     //Valida CPF
     if(TestaCPF(cpfAluno)== false){
         alert('CPF Inválido!');
         document.getElementById("idCPF").focus();
         return false;
-    };
+    }
     //Valida CPF Responsável
     if (TestaCPF(cpfResponsavel)== false) {
         alert('CPF do Responsáve Inválido!');
@@ -59,4 +60,8 @@ function TestaCPF(strCPF) {
         return false;
     } 
     return true;
+}
+
+function validaNovaSenha(){
+    alert('teste');
 }

@@ -43,13 +43,13 @@ function add(){
 	}
 }
 
-function readAll(){
+function readAllUsuario(){
 	$usuario = new usuario();
 	global $usuariosBD;
 	$usuariosBD = $usuario->readAll();
 }
 
-function edit(){
+function editUsuario(){
 	$usuario = new usuario();
 	if (isset($_GET['id'])) {
 		$id = $_GET['id'];
@@ -95,6 +95,16 @@ function edit(){
 			$usuarioBD = $usuario->read($id);
 		}
 	}
+}
+
+function atualizacaoDeSenha(){
+	if (isset($_POST['novaPassword'])) {
+		$usuario = new usuario();
+		$password = $_POST['novaPassword'];
+		$id = $_SESSION['idUsuario'];
+		$usuario->atualizacaoDeSenha($id,$password);
+	}
+	
 }
 
 function login (){
