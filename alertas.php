@@ -93,7 +93,7 @@ edit();
 </div>
 
   <!-- Modal Visualizar Alerta -->
-  <div class="modal fade" id="descricaoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelDescricao"
+  <div class="modal fade" data-backdrop="static" id="descricaoModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabelDescricao"
   aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">

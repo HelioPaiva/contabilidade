@@ -1,6 +1,8 @@
 <?php
 require_once 'control/alerta.php';
 readAllNoLida();
+require_once 'control/mensagem.php';
+readAllNoLidaMensagem();
 ?>
 
 <!-- TopBar -->
@@ -47,7 +49,7 @@ aria-labelledby="alertsDropdown">
 
 <?php if ($alertasNaoLidoBD) : ?>
   <?php 
-    foreach ($alertasNaoLidoBD as $alertaBD) : ?>
+  foreach ($alertasNaoLidoBD as $alertaBD) : ?>
     <a class="dropdown-item d-flex align-items-center" href="alertas.php">
       <div class="mr-3">
         <div class="icon-circle bg-primary">
@@ -64,7 +66,7 @@ aria-labelledby="alertsDropdown">
   Sem alertas</span>'?>
 <?php endif; ?>
 <a class="dropdown-item text-center small text-gray-500" href="alertas.php">
-  Mostrar todos os alertas</a>
+Mostrar todos os alertas</a>
 </div>
 </li>
 
@@ -72,33 +74,32 @@ aria-labelledby="alertsDropdown">
   <a class="nav-link dropdown-toggle" href="#" id="messagesDropdown" role="button" data-toggle="dropdown"
   aria-haspopup="true" aria-expanded="false">
   <i class="fas fa-envelope fa-fw"></i>
-  <span class="badge badge-warning badge-counter">2</span>
+  <?php if (count($mensagensNaoLidoBD) > 0): ?>
+    <span class="badge badge-warning badge-counter"><?php echo count($mensagensNaoLidoBD);?></span>
+  <?php endif ?>
 </a>
 <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in"
 aria-labelledby="messagesDropdown">
 <h6 class="dropdown-header">
   Mensagens
 </h6>
-<a class="dropdown-item d-flex align-items-center" href="#">
-  <div class="dropdown-list-image mr-3">
-    <img class="rounded-circle" src="img/man.png" style="max-width: 60px" alt="">
-    <div class="status-indicator bg-success"></div>
-  </div>
-  <div class="font-weight-bold">
-    <div class="text-truncate">Olá! Gostaria de saber se você pode me ajudar com um problema</div>
-    <div class="small text-gray-500">Eduardo</div>
-  </div>
-</a>
-<a class="dropdown-item d-flex align-items-center" href="#">
-  <div class="dropdown-list-image mr-3">
-    <img class="rounded-circle" src="img/girl.png" style="max-width: 60px" alt="">
-    <div class="status-indicator bg-default"></div>
-  </div>
-  <div>
-    <div class="text-truncate">Favor emitir guia de pagamento simples nacional</div>
-    <div class="small text-gray-500">Rodrigo Silva</div>
-  </div>
-</a>
+<?php if ($mensagensNaoLidoBD) : ?>
+  <?php 
+  foreach ($mensagensNaoLidoBD as $mensagemNaoLidoBD) : ?>
+    <a class="dropdown-item d-flex align-items-center" href="mensagens.php">
+      <div class="dropdown-list-image mr-3">
+        <img class="rounded-circle" src="<?php if($mensagemNaoLidoBD['sexo'] == 'm'){echo 'img/man.png';}else{echo 'img/girl.png';}  ?>" style="max-width: 60px" alt="">
+        <div class="status-indicator bg-success"></div>
+      </div>
+      <div class="font-weight-bold">
+        <div class="text-truncate"><?php echo $mensagemNaoLidoBD['assunto']; ?></div>
+        <div class="small text-gray-500"><?php echo $mensagemNaoLidoBD['de']; ?></div>
+      </div>
+    </a>
+  <?php endforeach; ?>
+  <?php else: echo '<span class="dropdown-item text-center font-weight-bold">
+  Sem novas mensagens</span>'?>
+<?php endif; ?>
 <a class="dropdown-item text-center small text-gray-500" href="mensagens.php">Todas as Mensagens</a>
 </div>
 </li>
@@ -153,7 +154,7 @@ aria-labelledby="messagesDropdown">
 <li class="nav-item dropdown no-arrow">
   <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown"
   aria-haspopup="true" aria-expanded="false">
-  <img class="img-profile rounded-circle" src="img/boy.png" style="max-width: 60px">
+  <img class="img-profile rounded-circle" src="<?php if($_SESSION['sexo'] == 'm'){echo 'img/boy.png';}else{echo 'img/girl.png';} ?>" style="max-width: 60px">
   <span class="ml-2 d-none d-lg-inline text-white small"><?php echo $_SESSION['nome']?></span>
 </a>
 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">

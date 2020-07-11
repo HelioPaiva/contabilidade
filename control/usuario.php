@@ -109,6 +109,7 @@ function login (){
 			$_SESSION['idEmail'] = $email;
 			$_SESSION['nome'] = $usuarioBD['nome'];
 			$_SESSION['perfil'] = $usuarioBD['perfil'];
+			$_SESSION['sexo'] = $usuarioBD['sexo'];
 			$_SESSION['login'] = true;
 			header('Location: home.php');
 		}else{
