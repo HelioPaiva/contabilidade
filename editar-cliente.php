@@ -1,6 +1,11 @@
 <?php
-//require_once 'controle/aluno.php';
-//edit();
+session_start();
+if (!isset($_SESSION['login'])){
+	session_destroy();
+	header("Location: index.php");
+}
+require_once 'control/cliente.php';
+editCliente();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +41,7 @@
 										<div class="row">
 											<div class="form-group col-md-4">
 												<label for="idCNPJ">CNPJ</label>
-												<input type="text" class="form-control" id="idCNPJ" name="cnpj" required="" value="">
+												<input type="text" class="form-control" id="idCNPJ" name="cnpj" required="" value="<?php echo $clienteBD['cnpj'];?>">
 											</div>
 											<div class="form-group col-md-5" style="padding-top: 34px; padding-left: 0px; font-size: 15px;">
 												<button class="btn btn-primary" type="button">
@@ -49,12 +54,12 @@
 										<div class="row">
 											<div class="form-group col-md-6">
 												<label for="idNomeFantasia">Nome(Fantasia)</label>
-												<input type="text" class="form-control" id="idNomeFantasia" name="nomeFantasia" required="">
+												<input type="text" class="form-control" id="idNomeFantasia" name="nomeFantasia" required="" value="<?php echo $clienteBD['nomeFantasia'];?>">
 											</div>
 											<div class="form-group col-md-6">
 												<label for="idRazaoSocial">Razão Social</label>
 												<div class="custom-file">
-													<input type="text" class="form-control" id="idRazaoSocial" name="razaoSocial">
+													<input type="text" class="form-control" id="idRazaoSocial" name="razaoSocial" value="<?php echo $clienteBD['razaoSocial'];?>">
 												</div>
 											</div>
 										</div>
@@ -62,52 +67,52 @@
 										<div class="row">
 											<div class="form-group col-md-2">
 												<label for="idCEP">CEP</label>
-												<input type="text" class="form-control" id="idCEP" name="cep" required="">
+												<input type="text" class="form-control" id="idCEP" name="cep" required="" value="<?php echo $clienteBD['cep'];?>">
 											</div>
 											<div class="form-group col-md-3">
 												<label for="idEndereco">Endereço</label>
-												<input type="text" class="form-control" id="idEndereco" name="endereco">
+												<input type="text" class="form-control" id="idEndereco" name="endereco" value="<?php echo $clienteBD['endereco'];?>">
 											</div>
 											<div class="form-group col-md-2">
 												<label for="idBairro">Bairro</label>
-												<input type="text" class="form-control" id="idBairro" name="bairro">
+												<input type="text" class="form-control" id="idBairro" name="bairro" value="<?php echo $clienteBD['bairro'];?>">
 											</div>
 											<div class="form-group col-md-2">
 												<label for="idCidade">Cidade</label>
-												<input type="text" class="form-control" id="idCidade" name="cidade">
+												<input type="text" class="form-control" id="idCidade" name="cidade" value="<?php echo $clienteBD['cidade'];?>">
 											</div>
 											<div class="form-group col-md-1">
 												<label for="idUF">UF</label>
-												<input type="text" class="form-control" id="idUF" name="uf">
+												<input type="text" class="form-control" id="idUF" name="uf" value="<?php echo $clienteBD['uf'];?>">
 											</div>
 											<div class="form-group col-md-2">
 												<label for="idNumero">Número / Complemento</label>
-												<input type="text" class="form-control" id="idNumero" name="numero" required="">
+												<input type="text" class="form-control" id="idNumero" name="numero" required="" value="<?php echo $clienteBD['numero'];?>">
 											</div>	
 										</div>
 										<div class="row">
 											<div class="form-group col-md-2">
 												<label for="idContato">Contato</label>
-												<input type="text" class="form-control" id="idContato" name="contato">
+												<input type="text" class="form-control" id="idContato" name="contato" value="<?php echo $clienteBD['contato'];?>">
 											</div>
 											<div class="form-group col-md-4">
 												<label for="idEmail">E-mail</label>
-												<input type="email" class="form-control" id="idEmail" name="email" required="">
+												<input type="email" class="form-control" id="idEmail" name="email" required="" value="<?php echo $clienteBD['email'];?>">
 											</div>
 											<div class="form-group col-md-3">
 												<label for="idTelefone">Telefone</label>
-												<input type="text" class="form-control" id="idTelefone" name="telefone" required="">
+												<input type="text" class="form-control" id="idTelefone" name="telefone" required="" value="<?php echo $clienteBD['telefone'];?>">
 											</div>
 											<div class="form-group col-md-3">
 												<label for="idCelular">Celular</label>
-												<input type="text" class="form-control" id="idCelular" name="celular" required="">
+												<input type="text" class="form-control" id="idCelular" name="celular" required="" value="<?php echo $clienteBD['celular'];?>">
 											</div>
 										</div>
 
 										<div class="row">
 											<div class="form-group col-md-12">
 												<label for="idObservacao">Observação</label>
-												<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="observacao"></textarea>
+												<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="observacao"><?php echo $clienteBD['obs'];?></textarea>
 											</div>
 										</div>
 
@@ -122,11 +127,7 @@
 
 					</div>
 				</div>
-
-				<!-- Modal Logout -->
-				<?php include 'logout.php'; ?>
-
-
+				
 			</div>
 			<!-- Footer -->
 			<?php include 'footer.php'; ?>
