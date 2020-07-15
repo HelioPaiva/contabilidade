@@ -1,6 +1,11 @@
 <?php
-//require_once 'controle/usuario.php';
-//readAll();
+session_start();
+if (!isset($_SESSION['login'])){
+  session_destroy();
+  header("Location: index.php");
+}
+require_once 'control/usuario.php';
+readAllUsuario();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,28 +65,19 @@
           </tr>
         </tfoot>
         <tbody>
-          <?php //if ($alunosBD) : ?>
-          <?php //foreach ($clientesBD as $clienteBD) : ?>
+          <?php if ($usuariosBD) : ?>
+          <?php foreach ($usuariosBD as $usuarioBD) : ?>
           <tr>
-            <td><?php echo '0001';//ucwords(strtolower($alunoBD['nome']));?></td>
-            <td><?php echo 'Hélio Paiva';//$alunoBD['celular'];?></td>
-            <td><?php echo 'hjppaiva@yahoo.com.br';//ucwords(strtolower($alunoBD['responsavel']));?></td>
-            <td><?php echo 'Administrador';//$alunoBD['dataNascimento'];?></td>
+            <td><?php echo $usuarioBD['id'];?></td>
+            <td><?php echo ucwords(strtolower($usuarioBD['nome']));?></td>
+            <td><?php echo strtolower($usuarioBD['email']);?></td>
+            <td><?php echo $usuarioBD['perfil'];?></td>
             <td>
-              <a href="editar-usuario.php?id=<?php //echo $alunoBD['id']; ?>" class="btn btn-sm btn-primary">Editar</a>
+              <a href="editar-usuario.php?id=<?php echo $usuarioBD['id']; ?>" class="btn btn-sm btn-primary">Editar</a>
             </td>
           </tr>
-          <tr>
-            <td><?php echo '0002';//ucwords(strtolower($alunoBD['nome']));?></td>
-            <td><?php echo 'Rafael Custodio';//$alunoBD['celular'];?></td>
-            <td><?php echo 'rafael@venturocontabil.com.br';//ucwords(strtolower($alunoBD['responsavel']));?></td>
-            <td><?php echo 'Contador';//$alunoBD['dataNascimento'];?></td>
-            <td>
-              <a href="editar-usuario.php?id=<?php //echo $alunoBD['id']; ?>" class="btn btn-sm btn-primary">Editar</a>
-            </td>
-          </tr>
-          <?php //endforeach; ?>
-          <?php //endif; ?>
+          <?php endforeach; ?>
+          <?php endif; ?>
         </tbody>
       </table>
     </div>
@@ -116,11 +112,6 @@ if(isset($_GET['r'])){
   </div>
 </div>
 <?php } ?>
-
-
-
-<!-- Modal Logout -->
-<?php include 'logout.php'; ?>
 
 </div>
 

@@ -1,6 +1,11 @@
 <?php
-//require_once 'controle/usuario.php';
-//add();
+session_start();
+if (!isset($_SESSION['login'])){
+  session_destroy();
+  header("Location: index.php");
+}
+require_once 'control/usuario.php';
+add();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,15 +61,15 @@
 												<label for="idPerfil">Perfil</label>
 												<select class="form-control mb-3" name="perfil" required="">
 													<option value="">Selecione</option>
-													<option value="1">Master</option>
-													<option value="2">Contador</option>
+													<option value="1">Administrador</option>
+													<option value="2">Master</option>
 												</select>
 											</div>
 										</div>
 										<div class="row">
 											<div class="form-group col-md-8">
 												<label for="idObservacao">Observação</label>
-												<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="observacao"></textarea>
+												<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="obs"></textarea>
 											</div>
 										</div>
 
@@ -79,10 +84,6 @@
 
 					</div>
 				</div>
-
-				<!-- Modal Logout -->
-				<?php include 'logout.php'; ?>
-
 
 			</div>
 			<!-- Footer -->

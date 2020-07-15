@@ -8,37 +8,18 @@ function add(){
 		$today = date_create('now', new DateTimeZone('America/Sao_Paulo'));
 		$dataCadastro = $today->format("Y-m-d H:i:s");
 		$dataModificacao = $today->format("Y-m-d H:i:s");
-		$idUnidade = 1;
-		$status = 'Ativo';
-		$senha = "123";
-		$idUsuario =  "23";//$_SESSION['usuario'];
+		$status = 1;
+		$password = "123";
 		
-		//$usuario->setid($_POST['id']);
-		$usuario->setperfil($_POST['perfil']);
-		$usuario->setidUnidade($idUnidade);
-		$usuario->setcref($_POST['cref']);
 		$usuario->setnome($_POST['nome']);
-		$usuario->setdataNascimento($_POST['dataNascimento']);
-		$usuario->setcpf($_POST['cpf']);
-		$usuario->setrg($_POST['rg']);
 		$usuario->setsexo($_POST['sexo']);
-		$usuario->setcep($_POST['cep']);
-		$usuario->setendereco($_POST['endereco']);
-		$usuario->setbairro($_POST['bairro']);
-		$usuario->setcidade($_POST['cidade']);
-		$usuario->setuf($_POST['uf']);
-		$usuario->setnumero($_POST['numero']);
-		$usuario->settelefone($_POST['telefone']);
-		$usuario->setcelular($_POST['celular']);
 		$usuario->setemail($_POST['email']);
-		$usuario->setdataAdmissao($_POST['dataAdmissao']);
-		$usuario->setdataDemissao($_POST['dataDemissao']);
-		$usuario->setobservacao($_POST['observacao']);
+		$usuario->setpassword($password);
+		$usuario->setidstatus($status);
+		$usuario->setidPerfil($_POST['perfil']);
 		$usuario->setdataCadastro($dataCadastro);
-		$usuario->setstatus($status);
-		$usuario->setlogin($_POST['email']);
-		$usuario->setsenha($senha);
 		$usuario->setdataModificacao($dataModificacao);
+		$usuario->setobs($_POST['obs']);
 		$usuario->add($usuario);
 	}
 }
@@ -57,37 +38,18 @@ function editUsuario(){
 			$today = date_create('now', new DateTimeZone('America/Sao_Paulo'));
 			$dataCadastro = $today->format("Y-m-d H:i:s");
 			$dataModificacao = $today->format("Y-m-d H:i:s");
-			$idUnidade = 1;
-			$status = 'Ativo';
-			$senha = "123";
-			$idUsuario =  "23";//$_SESSION['usuario'];
-			
-			//$usuario->setid($_POST['id']);
-			$usuario->setperfil($_POST['perfil']);
-			$usuario->setidUnidade($idUnidade);
-			$usuario->setcref($_POST['cref']);
+			$status = 1;
+			$password = "123";
+
 			$usuario->setnome($_POST['nome']);
-			$usuario->setdataNascimento($_POST['dataNascimento']);
-			$usuario->setcpf($_POST['cpf']);
-			$usuario->setrg($_POST['rg']);
 			$usuario->setsexo($_POST['sexo']);
-			$usuario->setcep($_POST['cep']);
-			$usuario->setendereco($_POST['endereco']);
-			$usuario->setbairro($_POST['bairro']);
-			$usuario->setcidade($_POST['cidade']);
-			$usuario->setuf($_POST['uf']);
-			$usuario->setnumero($_POST['numero']);
-			$usuario->settelefone($_POST['telefone']);
-			$usuario->setcelular($_POST['celular']);
 			$usuario->setemail($_POST['email']);
-			$usuario->setdataAdmissao($_POST['dataAdmissao']);
-			$usuario->setdataDemissao($_POST['dataDemissao']);
-			$usuario->setobservacao($_POST['observacao']);
+			$usuario->setpassword($password);
+			$usuario->setidstatus($status);
+			$usuario->setidPerfil($_POST['perfil']);
 			$usuario->setdataCadastro($dataCadastro);
-			$usuario->setstatus($status);
-			$usuario->setlogin($_POST['email']);
-			$usuario->setsenha($senha);
 			$usuario->setdataModificacao($dataModificacao);
+			$usuario->setobs($_POST['obs']);
 			$usuario->edit($usuario,$id);
 		}else{
 			$usuario = new usuario();

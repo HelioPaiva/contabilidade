@@ -3,10 +3,16 @@
 require_once 'model/database.php';
 
 class usuario {
-	private //$id,
+	private /*$id,*/
+	$nome,
+	$sexo,
 	$email,
 	$password,
-	$dataCadastro;
+	$idStatus,
+	$idPerfil,
+	$dataCadastro,
+	$dataModificacao,
+	$obs;
 
 	/*Gets*/
 	/*
@@ -14,15 +20,34 @@ class usuario {
 		return $this->id;
 	}
 	*/
+	public function getnome(){
+		return $this-> nome;
+	}
+	public function getsexo(){
+		return $this-> sexo;
+	}
 	public function getemail(){
-		return $this->email;
+		return $this-> email;
 	}
 	public function getpassword(){
-		return $this->password;
+		return $this-> password;
+	}
+	public function getidStatus(){
+		return $this-> idStatus;
+	}
+	public function getidPerfil(){
+		return $this-> idPerfil;
 	}
 	public function getdataCadastro(){
-		return $this->dataCadastro;
+		return $this-> dataCadastro;
 	}
+	public function getdataModificacao(){
+		return $this-> dataModificacao;
+	}
+	public function getobs(){
+		return $this-> obs;
+	}
+
 
 	/*Sets*/
 	/*
@@ -30,15 +55,34 @@ class usuario {
 		$this->id = $id;
 	}
 	*/
+	public function setnome($nome){
+		$this-> nome = $nome;
+	}
+	public function setsexo($sexo){
+		$this-> sexo = $sexo;
+	}
 	public function setemail($email){
-		$this->email = $email;
+		$this-> email = $email;
 	}
 	public function setpassword($password){
-		$this->password = $password;
+		$this-> password = $password;
+	}
+	public function setidStatus($idStatus){
+		$this-> idStatus = $idStatus;
+	}
+	public function setidPerfil($idPerfil){
+		$this-> idPerfil = $idPerfil;
 	}
 	public function setdataCadastro($dataCadastro){
-		$this->dataCadastro = $dataCadastro;
+		$this-> dataCadastro = $dataCadastro;
 	}
+	public function setdataModificacao($dataModificacao){
+		$this-> dataModificacao = $dataModificacao;
+	}
+	public function setobs($obs){
+		$this-> obs = $obs;
+	}
+
 
 	/*Métodos*/
 	public function add(usuario $usuario){
@@ -72,7 +116,7 @@ class usuario {
 		$itens = rtrim($itens, ',');
 		$sql  = "UPDATE usuario";
 		$sql .= " SET $itens";
-		$sql .= " WHERE id=" . $id . " AND idUnidade=1;";
+		$sql .= " WHERE id=" . $id;
 		
 		$db->edit($sql);
 		echo "Dados Cadastrados Com Sucesso!";
@@ -81,12 +125,10 @@ class usuario {
 	public function readAll(){
 		$db = new database();
 
-		$sql = "SELECT id
-		,nome
-		,perfil
-		,status
-		,dataAdmissao 
-		FROM usuario";
+		$sql = "SELECT u.id, u.nome, u.email, p.perfil 
+		FROM usuario u
+		LEFT JOIN perfil p
+		ON u.idPerfil = p.id";
 
 		$result = $db->readAll($sql);
 		return $result;
@@ -108,12 +150,12 @@ class usuario {
 		$db = new database();
 
 		$sql = "SELECT *, p.perfil
-				FROM usuario u
-				LEFT JOIN perfil p
-				ON u.idPerfil = p.id
-				where email = '".$email."' 
-				and password = '".$password."' 
-				and idStatus = 1";
+		FROM usuario u
+		LEFT JOIN perfil p
+		ON u.idPerfil = p.id
+		where email = '".$email."' 
+		and password = '".$password."' 
+		and idStatus = 1";
 		$result = $db->read($sql);
 		return $result;
 	}
