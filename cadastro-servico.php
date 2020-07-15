@@ -1,6 +1,11 @@
 <?php
-//require_once 'controle/aluno.php';
-//add();
+session_start();
+if (!isset($_SESSION['login'])){
+  session_destroy();
+  header("Location: index.php");
+}
+require_once 'control/servico.php';
+add();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -50,8 +55,8 @@
 
 										<div class="row">
 											<div class="form-group col-md-10">
-												<label for="idObservacao">Observação</label>
-												<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="observacao"></textarea>
+												<label for="idDescricao">Observação</label>
+												<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="descricao"></textarea>
 											</div>
 										</div>
 
@@ -66,10 +71,6 @@
 
 					</div>
 				</div>
-
-				<!-- Modal Logout -->
-				<?php include 'logout.php'; ?>
-
 
 			</div>
 			<!-- Footer -->

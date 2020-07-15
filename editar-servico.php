@@ -1,6 +1,11 @@
 <?php
-//require_once 'controle/servico.php';
-//edit();
+session_start();
+if (!isset($_SESSION['login'])){
+	session_destroy();
+	header("Location: index.php");
+}
+require_once 'control/servico.php';
+editServico();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,31 +37,31 @@
 							<!-- Form Basic -->
 							<div class="card mb-4">
 								<div class="card-body">
-									<form name="formServico" action="editar-servico.php" method="POST">
+									<form name="formServico" action="editar-servico.php?id=<?php echo $servicoBD['id'];?>" method="POST">
 										<div class="row">
 											<div class="form-group col-md-8">
 												<label for="idServico">Serviço</label>
-												<input type="text" class="form-control" id="idServico" name="servico" required="" value="">
+												<input type="text" class="form-control" id="idServico" name="servico" required="" value="<?php echo $servicoBD['servico'];?>">
 											</div>
 											<div class="form-group col-md-2">
 												<label for="idTipo">Tipo</label>
 												<select class="form-control mb-3" name="tipo" required="">
 													<option value="">Selecione</option>
-													<option value="1">Administrativo</option>
-													<option value="2">Consultoria</option>
+													<option value="1" <?=($servicoBD['tipo'] == '1')?'selected':''?>>Administrativo</option>
+													<option value="1" <?=($servicoBD['tipo'] == '2')?'selected':''?>>Consultoria</option>
 												</select>
 											</div>
 										</div>
 
 										<div class="row">
-											<div class="form-group col-md-12">
+											<div class="form-group col-md-10">
 												<label for="idObservacao">Observação</label>
-												<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="observacao"></textarea>
+												<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="descricao"><?php echo $servicoBD['descricao'];?></textarea>
 											</div>
 										</div>
 
 										<button type="submit" class="btn btn-primary">Atualizar</button>
-										<a href="seleciona-cliente.php" class="btn btn-danger">Cancelar</a>
+										<a href="seleciona-servico.php" class="btn btn-danger">Cancelar</a>
 									</form>
 								</div>
 							</div>
@@ -66,10 +71,6 @@
 
 					</div>
 				</div>
-
-				<!-- Modal Logout -->
-				<?php include 'logout.php'; ?>
-
 
 			</div>
 			<!-- Footer -->

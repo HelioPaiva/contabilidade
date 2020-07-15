@@ -128,9 +128,6 @@ add();
 					</div>
 				</div>
 
-				<!-- Modal Logout -->
-
-
 			</div>
 			<!-- Footer -->
 			<?php include 'footer.php'; ?>

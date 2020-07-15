@@ -1,6 +1,11 @@
 <?php
-//require_once 'controle/servico.php';
-//readAll();
+session_start();
+if (!isset($_SESSION['login'])){
+  session_destroy();
+  header("Location: index.php");
+}
+require_once 'control/servico.php';
+readAllServico();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -58,26 +63,18 @@
           </tr>
         </tfoot>
         <tbody>
-          <?php //if ($servicosBD) : ?>
-            <?php //foreach ($clientesBD as $servicoBD) : ?>
+          <?php if ($servicosBD) : ?>
+            <?php foreach ($servicosBD as $servicoBD) : ?>
               <tr>
-                <td><?php echo '0001';//ucwords(strtolower($servicoBD['nome']));?></td>
-                <td><?php echo 'Vendas';//$servicoBDBD['celular'];?></td>
-                <td><?php echo 'Consultoria';//ucwords(strtolower($servicoBDBD['responsavel']));?></td>
+                <td><?php echo ucwords(strtolower($servicoBD['servico']));?></td>
+                <td><?php echo $servicoBD['tipo'];?></td>
+                <td><?php echo ucwords(strtolower($servicoBD['descricao']));?></td>
                 <td>
-                  <a href="editar-servico.php?id=<?php //echo $servicoBD['id']; ?>" class="btn btn-sm btn-primary">Editar</a>
+                  <a href="editar-servico.php?id=<?php echo $servicoBD['id']; ?>" class="btn btn-sm btn-primary">Editar</a>
                 </td>
               </tr>
-              <tr>
-                <td><?php echo '0002';//ucwords(strtolower($alunoBD['nome']));?></td>
-                <td><?php echo 'Prestação de Serviços';//$alunoBD['celular'];?></td>
-                <td><?php echo 'Administrativo';//ucwords(strtolower($alunoBD['responsavel']));?></td>
-                <td>
-                  <a href="editar-servico.php?id=<?php //echo $servicoBD['id']; ?>" class="btn btn-sm btn-primary">Editar</a>
-                </td>
-              </tr>
-            <?php //endforeach; ?>
-          <?php //endif; ?>
+            <?php endforeach; ?>
+          <?php endif; ?>
         </tbody>
       </table>
     </div>
@@ -112,11 +109,6 @@ if(isset($_GET['r'])){
   </div>
 </div>
 <?php } ?>
-
-
-
-<!-- Modal Logout -->
-<?php include 'logout.php'; ?>
 
 </div>
 
