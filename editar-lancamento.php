@@ -1,6 +1,11 @@
 <?php
-//require_once 'controle/aluno.php';
-//add();
+session_start();
+if (!isset($_SESSION['login'])){
+	session_destroy();
+	header("Location: index.php");
+}
+require_once 'control/lancamento.php';
+editLancamento();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,45 +37,47 @@
 							<!-- Form Basic -->
 							<div class="card mb-4">
 								<div class="card-body">
-									<form name="formLancamento" action="cadastro-lancamento.php" method="POST">
+									<form name="formLancamento" action="editar-lancamento.php?id=<?php echo $lancamentoBD['id'];?>" method="POST">
 										<div class="row">
 											<div class="form-group col-md-6">
-												<label for="idLancamento">Descrição do Lançamento</label>
-												<input type="text" class="form-control" id="lancamento" name="lancamento" required="">
+												<label for="idDescricao">Descrição do Lançamento</label>
+												<input type="text" class="form-control" id="idDescricacao" name="descricao" required="" value="<?php echo $lancamentoBD['descricao'];?>">
 											</div>
 											<div class="form-group col-md-2">
 												<label for="idTipo">Tipo</label>
 												<select class="form-control mb-3" name="tipo" required="">
 													<option value="">Selecione</option>
-													<option value="1">Entrada</option>
-													<option value="2">Saída</option>
+													<option value="1" <?=($lancamentoBD['tipo'] == '1')?'selected':''?>>Entrada</option>
+													<option value="2" <?=($lancamentoBD['tipo'] == '2')?'selected':''?>>Saída</option>
 												</select>
 											</div>
 										</div>
 										<div class="row">
 											<div class="form-group col-md-2">
 												<label for="idValor">Valor</label>
-												<input type="text" class="form-control" id="idValor" name="data" required="">
+												<input type="text" class="form-control" id="idValor" name="valor" required="" value="<?php echo $lancamentoBD['valor'];?>">
 											</div>
+											<!--
 											<div class="form-group col-md-2">
 												<label for="idData">Data</label>
 												<input type="text" class="form-control" id="idData" name="data">
 											</div>
+										-->
 											<div class="form-group col-md-2">
 												<label for="idDataVencimento">Vencimento</label>
-												<input type="text" class="form-control" id="idDataVencimento" name="vencimento">
+												<input type="text" class="form-control" id="idDataVencimento" name="dataVencimento" value="<?php echo $lancamentoBD['dataVencimento'];?>">
 											</div>
 											<div class="form-group col-md-2">
 												<label for="idPago">Pago</label>
 												<select class="form-control mb-3" name="pago" required="">
 													<option value="">Selecione</option>
-													<option value="1">Sim</option>
-													<option value="2">Não</option>
+													<option value="1" <?=($lancamentoBD['pago'] == '1')?'selected':''?>>Sim</option>
+													<option value="0" <?=($lancamentoBD['pago'] == '0')?'selected':''?>>Não</option>
 												</select>
 											</div>
 										</div>
 										
-										<button type="submit" class="btn btn-primary">Cadastrar</button>
+										<button type="submit" class="btn btn-primary">Atualizar</button>
 										<a href="seleciona-lancamento.php" class="btn btn-danger">Cancelar</a>
 									</form>
 								</div>
@@ -82,8 +89,6 @@
 					</div>
 				</div>
 
-				<!-- Modal Logout -->
-				<?php include 'logout.php'; ?>
 
 
 			</div>

@@ -1,6 +1,11 @@
 <?php
-//require_once 'controle/aluno.php';
-//add();
+session_start();
+if (!isset($_SESSION['login'])){
+  session_destroy();
+  header("Location: index.php");
+}
+require_once 'control/lancamento.php';
+add();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -35,8 +40,8 @@
 									<form name="formLancamento" action="cadastro-lancamento.php" method="POST">
 										<div class="row">
 											<div class="form-group col-md-6">
-												<label for="idLancamento">Descrição do Lançamento</label>
-												<input type="text" class="form-control" id="lancamento" name="lancamento" required="">
+												<label for="idDesc">Descrição do Lançamento</label>
+												<input type="text" class="form-control" id="idDesc" name="descricao" required="">
 											</div>
 											<div class="form-group col-md-2">
 												<label for="idTipo">Tipo</label>
@@ -50,22 +55,24 @@
 										<div class="row">
 											<div class="form-group col-md-2">
 												<label for="idValor">Valor</label>
-												<input type="text" class="form-control" id="idValor" name="data" required="">
+												<input type="text" class="form-control" id="idValor" name="valor" required="">
 											</div>
+											<!--
 											<div class="form-group col-md-2">
 												<label for="idData">Data</label>
 												<input type="text" class="form-control" id="idData" name="data">
 											</div>
+										-->
 											<div class="form-group col-md-2">
-												<label for="idDataVencimento">Vencimento</label>
-												<input type="text" class="form-control" id="idDataVencimento" name="vencimento">
+												<label for="idDataVencimento">Data Vencimento</label>
+												<input type="date" class="form-control" id="idDataVencimento" name="dataVencimento">
 											</div>
 											<div class="form-group col-md-2">
 												<label for="idPago">Pago</label>
 												<select class="form-control mb-3" name="pago" required="">
 													<option value="">Selecione</option>
 													<option value="1">Sim</option>
-													<option value="2">Não</option>
+													<option value="0">Não</option>
 												</select>
 											</div>
 										</div>
@@ -81,10 +88,6 @@
 
 					</div>
 				</div>
-
-				<!-- Modal Logout -->
-				<?php include 'logout.php'; ?>
-
 
 			</div>
 			<!-- Footer -->

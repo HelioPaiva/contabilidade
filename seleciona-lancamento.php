@@ -1,6 +1,14 @@
 <?php
-//require_once 'controle/cliente.php';
-//readAll();
+session_start();
+if (!isset($_SESSION['login'])){
+  session_destroy();
+  header("Location: index.php");
+}
+require_once 'control/lancamento.php';
+readAllLancamento();
+totalEntrada();
+totalSaida();
+totalSaidaFuturo();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +44,9 @@
             <div class="row align-items-center">
               <div class="col mr-2">
                 <div class="text-xs font-weight-bold text-uppercase mb-1">Total Entradas (Mensal)</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">R$ 510,35</div>
+                <?php if ($lancamentoEntradaBD) : ?>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">R$ <?php echo number_format($lancamentoEntradaBD['totalEntrada'],2);?></div>
+                <?php endif; ?>
                 <div class="mt-2 mb-0 text-muted text-xs">
                   <span class="text-primary mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
                   <span>Comparado com último mês</span>
@@ -57,7 +67,9 @@
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                 <div class="text-xs font-weight-bold text-uppercase mb-1">Total Saídas (Mensal)</div>
-                <div class="h5 mb-0 font-weight-bold text-gray-800">R$ 342,54‬</div>
+                 <?php if ($lancamentoSaidaBD) : ?>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">R$ ‬<?php echo number_format($lancamentoSaidaBD['totalSaida'],2);?></div>
+                 <?php endif; ?>
                 <div class="mt-2 mb-0 text-muted text-xs">
                   <span class="text-danger mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
                   <span>Comparado com último mês</span>
@@ -78,7 +90,7 @@
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                 <div class="text-xs font-weight-bold text-uppercase mb-1">Saldo do Mês</div>
-                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">R$ 167,81</div>
+                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">R$ <?php echo number_format(($lancamentoEntradaBD['totalEntrada'] - $lancamentoSaidaBD['totalSaida']),2); ?></div>
                 <div class="mt-2 mb-0 text-muted text-xs">
                   <span class="text-dafault mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
                   <span>Comparado com último mês</span>
@@ -99,7 +111,9 @@
             <div class="row no-gutters align-items-center">
               <div class="col mr-2">
                 <div class="text-xs font-weight-bold text-uppercase mb-1">Saldo Futuro do Mês</div>
-                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">R$ - 234,50</div>
+                <?php if ($lancamentoSaidaFuturoBD) : ?>
+                <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">R$ <?php echo number_format(($lancamentoSaidaFuturoBD['totalSaidaFuturo'] + (($lancamentoEntradaBD['totalEntrada'] - $lancamentoSaidaBD['totalSaida']))),2);?></div>
+                <?php endif; ?>
                 <div class="mt-2 mb-0 text-muted text-xs">
                   <span class="text-default mr-2"><i class="fas fa-arrow-up"></i> 20.4%</span>
                   <span>Comparado com último mês</span>
@@ -129,69 +143,41 @@
            <table class="table align-items-center table-flush table-hover" id="dataTableHover">
             <thead class="thead-light">
              <tr>
-              <th>Data</th>
+              <!--<th>Data</th>-->
               <th>Lançamento</th>
               <th>Tipo</th>
               <th>Valor</th>
               <th>Dt.Venci</th>
+              <th>Pago</th>
               <th>Ação</th>
             </tr>
           </thead>
           <tfoot>
            <tr>
-            <th>Data</th>
+            <!--<th>Data</th>-->
             <th>Lançamento</th>
             <th>Tipo</th>
             <th>Valor</th>
             <th>Dt.Venci</th>
+            <th>Pago</th>
             <th>Ação</th>
           </tr>
         </tfoot>
         <tbody>
-          <?php //if ($alunosBD) : ?>
-          <?php //foreach ($clientesBD as $clienteBD) : ?>
+          <?php if ($lancamentosBD) : ?>
+          <?php foreach ($lancamentosBD as $lancamentoBD) : ?>
           <tr>
-            <td><?php echo '02/07/2020';//ucwords(strtolower($alunoBD['nome']));?></td>
-            <td><?php echo 'Conta de água';//$alunoBD['celular'];?></td>
-            <td><?php echo 'Saída';//ucwords(strtolower($alunoBD['responsavel']));?></td>
-            <td><?php echo '132,34';//$alunoBD['dataNascimento'];?></td>
-            <td><?php echo '02/07/2020';//ucwords(strtolower($alunoBD['nome']));?></td>
+            <td><?php echo ucwords(strtolower($lancamentoBD['descricao']));?></td>
+            <td><?php echo $lancamentoBD['tipo'];?></td>
+            <td><?php echo number_format($lancamentoBD['valor'],2);?></td>
+            <td><?php echo $lancamentoBD['dataVencimento'];?></td>
+            <td><?php echo $lancamentoBD['pago'];?></td>
             <td>
-              <a href="editar-lancamento.php?id=<?php //echo $alunoBD['id']; ?>" class="btn btn-sm btn-primary">Editar</a>
+              <a href="editar-lancamento.php?id=<?php echo $lancamentoBD['id']; ?>" class="btn btn-sm btn-primary">Editar</a>
             </td>
           </tr>
-          <tr>
-            <td><?php echo '01/07/2020';//ucwords(strtolower($alunoBD['nome']));?></td>
-            <td><?php echo 'Conta de Luz';//$alunoBD['celular'];?></td>
-            <td><?php echo 'Saída';//ucwords(strtolower($alunoBD['responsavel']));?></td>
-            <td><?php echo '210,20';//$alunoBD['dataNascimento'];?></td>
-            <td><?php echo '02/07/2020';//ucwords(strtolower($alunoBD['nome']));?></td>
-            <td>
-              <a href="editar-lancamento.php?id=<?php //echo $alunoBD['id']; ?>" class="btn btn-sm btn-primary">Editar</a>
-            </td>
-          </tr>
-          <tr>
-            <td><?php echo '03/07/2020';//ucwords(strtolower($alunoBD['nome']));?></td>
-            <td><?php echo 'Recebimento de Cliente';//$alunoBD['celular'];?></td>
-            <td><?php echo 'Entrada';//ucwords(strtolower($alunoBD['responsavel']));?></td>
-            <td><?php echo '300,15';//$alunoBD['dataNascimento'];?></td>
-            <td><?php echo '03/07/2020';//ucwords(strtolower($alunoBD['nome']));?></td>
-            <td>
-              <a href="editar-lancamento.php?id=<?php //echo $alunoBD['id']; ?>" class="btn btn-sm btn-primary">Editar</a>
-            </td>
-          </tr>
-          <tr>
-            <td><?php echo '01/07/2020';//ucwords(strtolower($alunoBD['nome']));?></td>
-            <td><?php echo 'Restituição';//$alunoBD['celular'];?></td>
-            <td><?php echo 'Entrada';//ucwords(strtolower($alunoBD['responsavel']));?></td>
-            <td><?php echo '210,20';//$alunoBD['dataNascimento'];?></td>
-            <td><?php echo '01/07/2020';//ucwords(strtolower($alunoBD['nome']));?></td>
-            <td>
-              <a href="editar-lancamento.php?id=<?php //echo $alunoBD['id']; ?>" class="btn btn-sm btn-primary">Editar</a>
-            </td>
-          </tr>
-          <?php //endforeach; ?>
-          <?php //endif; ?>
+          <?php endforeach; ?>
+          <?php endif; ?>
         </tbody>
       </table>
     </div>
@@ -227,10 +213,6 @@ if(isset($_GET['r'])){
 </div>
 <?php } ?>
 
-
-
-<!-- Modal Logout -->
-<?php include 'logout.php'; ?>
 
 </div>
 
