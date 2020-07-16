@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION['login'])){
+  session_destroy();
+  header("Location: index.php");
+}
 //require_once 'controle/usuario.php';
 //add();
 ?>
@@ -39,7 +44,7 @@
 										<div class="form-group">
 											<div class="form-group">
 												<label for="idCategoria">Categoria</label>
-												<select class="form-control mb-3" name="perfil" required="">
+												<select class="form-control mb-3" name="idCategoria" required="">
 													<option value="">Selecione</option>
 													<option value="1">Pizza</option>
 													<option value="2">Bebidas</option>
@@ -47,25 +52,26 @@
 											</div>
 											<div class="form-group">
 												<label for="idProduto">Produto</label>
-												<select class="form-control mb-3" name="produto" required="">
+												<select class="form-control mb-3" name="idProduto" required="">
 													<option value="">Selecione</option>
 													<option value="1">Mussarela</option>
 													<option value="2">Calabresa</option>
 												</select>
 											</div>
 											<div class="form-group">
-												<label for="idProduto">Quantidade</label>
+												<label for="idQuantidade">Quantidade</label>
 												<input type="text" class="form-control" id="idQuantidade" name="quantidade" required="">
 											</div>
 											<div class="form-group">
 												<label for="idValorUnitario">Valor Unitário</label>
-												<input type="text" class="form-control" id="idValorUnitario" name="valorUnitario" readonly="">
+												<input type="text" class="form-control" id="idValorUnitario" name="valorUnitario" required="">
 											</div>
 											<div class="form-group">
 												<label for="idValorTotal">Valor Total</label>
 												<input type="text" class="form-control" id="idValorTotal" name="valorTotal" readonly="">
 											</div>
 										</div>
+										<button type="submit" class="btn btn-primary">Adicionar</button>
 									</form>
 								</div>
 							</div>
@@ -145,9 +151,6 @@
 
 					</div>
 				</div>
-
-				<!-- Modal Logout -->
-				<?php include 'logout.php'; ?>
 
 
 			</div>
