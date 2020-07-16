@@ -1,4 +1,9 @@
 <?php
+session_start();
+if (!isset($_SESSION['login'])){
+  session_destroy();
+  header("Location: index.php");
+}
 //require_once 'controle/servico.php';
 //readAll();
 ?>
@@ -109,10 +114,6 @@ if(isset($_GET['r'])){
 </div>
 <?php } ?>
 
-
-
-<!-- Modal Logout -->
-<?php include 'logout.php'; ?>
 
 </div>
 
