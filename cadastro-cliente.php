@@ -9,8 +9,115 @@ add();
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<!--head -->
-<?php include 'head.php'; ?>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<link href="img/logo/logo.png" rel="icon">
+	<title>Contabilidade</title>
+	<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+	<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+	<link href="css/ruang-admin.min.css" rel="stylesheet">
+	<link href="vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+	<script type="text/javascript" src="javascript/validacoes.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script type='text/javascript' src="js-mascara.js"></script>
+	<script>
+		$(document).ready( function() { 
+
+			$('#idPesquisar').click(function(){
+				/* Configura a requisição AJAX */
+				$.ajax({
+					url : 'consultar-cnpj.php', /* URL que será chamada */ 
+					type : 'POST', /* Tipo da requisição */ 
+					data: 'cnpj=' + $('#idCNPJ').val(), /* dado que será enviado via POST */
+					dataType: 'json', /* Tipo de transmissão */
+					success: function(data){
+						if(data.status == "OK"){
+							$('#idCNPJ').val(data.cnpj);
+							$('#idNomeFantasia').val(data.fantasia);
+							$('#idRazaoSocial').val(data.nome);
+                                //$('#idSituacao').val(data.situacao);
+                                $('#idLogradouro').val(data.logradouro);
+                                $('#idNumero').val(data.numero);
+                                $('#idComplemento').val(data.complemento);
+                                $('#idCEP').val(data.cep);
+                                $('#idBairro').val(data.bairro);
+                                $('#idMunicipio').val(data.municipio);
+                                $('#idUF').val(data.uf);
+                                $('#idEmail').val(data.email);
+                                $('#idTelefone').val(data.telefone);
+                                $('#idNaturezaJuridica').val(data.natureza_juridica);
+                                $('#idAbertura').val(data.abertura);
+                                $('#idAtividadePrincipal').val(data.atividade_principal[0].code + ' ' + data.atividade_principal[0].text);
+                                $('#idAtividadeSecundaria').val(data.atividades_secundarias[0].code + ' ' +data.atividades_secundarias[0].text);
+                                $('#idTipo').val(data.tipo);
+                                $('#idResponsavel').val(data.qsa[0].nome);
+                                $('#idSocio').val(data.qsa[1].nome);
+                                $('#idCapital').val(data.capital_social);
+                            }else{
+                            	alert("CNPJ inválido");
+                            	$('#idCNPJ').val("");  
+                            }
+                        }
+                    });   
+				return false;    
+			});
+
+			$('#idCEP').blur(function(){
+				/* Configura a requisição AJAX */
+				var cep = document.getElementById("idCEP").value;
+				$.ajax({
+					url : 'consultar_cep.php', /* URL que será chamada */ 
+					type : 'POST', /* Tipo da requisição */ 
+					data: 'cep=' + $('#idCEP').val(), /* dado que será enviado via POST */
+					dataType: 'json', /* Tipo de transmissão */
+					success: function(data){
+						if(data.cep != ""){
+							$('#idLogradouro').val(data.logradouro);
+							$('#idBairro').val(data.bairro);
+							$('#idMunicipio').val(data.localidade);
+							$('#idUF').val(data.uf);
+							$('#idNumero').val("");
+
+						}else{
+							alert("CEP Invalido");
+							$('#idLogradouro').val("");
+							$('#idBairro').val("");
+							$('#idMunicipio').val("");
+							$('#idUF').val("");
+							$('#idCEP').val("");
+							$('#idLogradouro').focus();
+						}
+					}
+				});   
+				return false;    
+			});
+
+
+		});
+
+		function validaCNPJ(){
+			var cnpj = document.getElementById("idCNPJ").value;
+			if(cnpj == ""){
+				alert('CNPJ inválido!');
+				document.getElementById("idCNPJ").focus();
+				return false;
+			}
+		}
+		function validaCEP(){
+			var cep = document.getElementById("idCEP").value;
+			if(cep == ""){
+				alert('CEP inválido!');
+				document.getElementById("idCEP").focus();
+				return false;
+			}
+		}
+	</script>
+</head>
+
 <body id="page-top">
 	<div id="wrapper">
 		<!--Menu Left -->
@@ -42,9 +149,10 @@ add();
 											<div class="form-group col-md-4">
 												<label for="idCNPJ">CNPJ</label>
 												<input type="text" class="form-control" id="idCNPJ" name="cnpj" required="">
+												<!--<small id="idCPFErrado" style="color: red;">CNPJ inválido</small>-->
 											</div>
 											<div class="form-group col-md-5" style="padding-top: 34px; padding-left: 0px; font-size: 15px;">
-												<button class="btn btn-primary" type="button">
+												<button class="btn btn-primary" onclick="return validaCNPJ(this);" type="submit" id="idPesquisar">
 													<i class="fas fa-search fa-sm"></i>
 												</button>
 												Importar informações cadastradas na receita federal
@@ -53,33 +161,33 @@ add();
 										</div>
 										<div class="row">
 											<div class="form-group col-md-6">
-												<label for="idNomeFantasia">Nome(Fantasia)</label>
-												<input type="text" class="form-control" id="idNomeFantasia" name="nomeFantasia" required="">
-											</div>
-											<div class="form-group col-md-6">
 												<label for="idRazaoSocial">Razão Social</label>
 												<div class="custom-file">
-													<input type="text" class="form-control" id="idRazaoSocial" name="razaoSocial">
+													<input type="text" class="form-control" id="idRazaoSocial" name="razaoSocial" required="">
 												</div>
+											</div>
+											<div class="form-group col-md-6">
+												<label for="idNomeFantasia">Nome(Fantasia)</label>
+												<input type="text" class="form-control" id="idNomeFantasia" name="nomeFantasia">
 											</div>
 										</div>
 
 										<div class="row">
 											<div class="form-group col-md-2">
 												<label for="idCEP">CEP</label>
-												<input type="text" class="form-control" id="idCEP" name="cep" required="">
+												<input type="text" class="form-control" id="idCEP" name="cep" onkeyup="maskCEP(this);" maxlength="9" required="">
 											</div>
 											<div class="form-group col-md-3">
-												<label for="idEndereco">Endereço</label>
-												<input type="text" class="form-control" id="idEndereco" name="endereco">
+												<label for="idLogradouro">Endereço</label>
+												<input type="text" class="form-control" id="idLogradouro" name="endereco">
 											</div>
 											<div class="form-group col-md-2">
 												<label for="idBairro">Bairro</label>
 												<input type="text" class="form-control" id="idBairro" name="bairro">
 											</div>
 											<div class="form-group col-md-2">
-												<label for="idCidade">Cidade</label>
-												<input type="text" class="form-control" id="idCidade" name="cidade">
+												<label for="idMunicipio">Cidade</label>
+												<input type="text" class="form-control" id="idMunicipio" name="cidade">
 											</div>
 											<div class="form-group col-md-1">
 												<label for="idUF">UF</label>
@@ -92,12 +200,12 @@ add();
 										</div>
 										<div class="row">
 											<div class="form-group col-md-2">
-												<label for="idContato">Contato</label>
-												<input type="text" class="form-control" id="idContato" name="contato">
+												<label for="idResponsavel">Contato</label>
+												<input type="text" class="form-control" id="idResponsavel" name="contato" required="">
 											</div>
 											<div class="form-group col-md-4">
 												<label for="idEmail">E-mail</label>
-												<input type="email" class="form-control" id="idEmail" name="email" required="">
+												<input type="email" class="form-control" id="idEmail" name="email">
 											</div>
 											<div class="form-group col-md-3">
 												<label for="idTelefone">Telefone</label>
@@ -105,7 +213,7 @@ add();
 											</div>
 											<div class="form-group col-md-3">
 												<label for="idCelular">Celular</label>
-												<input type="text" class="form-control" id="idCelular" name="celular" required="">
+												<input type="text" class="form-control" id="idCelular" name="celular">
 											</div>
 										</div>
 
@@ -129,6 +237,8 @@ add();
 				</div>
 
 			</div>
+
+
 			<!-- Footer -->
 			<?php include 'footer.php'; ?>
 

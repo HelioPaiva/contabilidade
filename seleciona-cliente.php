@@ -88,7 +88,7 @@ readAllCliente();
 
 </div>
 
-<!--Modal-->
+  <!--Modal-->
 <?php 
 if(isset($_GET['r'])){
   ?>
@@ -97,7 +97,7 @@ if(isset($_GET['r'])){
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabelLogout">Portal Mori</h5>
+        <h5 class="modal-title" id="exampleModalLabelLogout">Clickou</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -106,7 +106,7 @@ if(isset($_GET['r'])){
         <p>Cadastro Realizado Com Sucesso!</p>
       </div>
       <div class="modal-footer">
-        <a href="cadastro-aluno.php" class="btn btn-primary">OK</a>
+        <a href="seleciona-cliente.php" class="btn btn-primary">OK</a>
       </div>
     </div>
   </div>

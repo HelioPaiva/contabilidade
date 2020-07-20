@@ -172,7 +172,8 @@ class cliente {
 		$sql = "INSERT INTO cliente " . "($columns)" . " VALUES " . "($values);";
 
 		$db->add($sql);
-		echo "Dados Cadastrados Com Sucesso!";
+		header("Location: seleciona-cliente.php?r=1");
+		//echo "Dados Cadastrados Com Sucesso!";
 
 	}
 
@@ -191,7 +192,8 @@ class cliente {
 		$sql .= " WHERE id=" . $id;
 		
 		$db->edit($sql);
-		echo "Dados Cadastrados Com Sucesso!";
+		header("Location: seleciona-cliente.php?r=1");
+		//echo "Dados Cadastrados Com Sucesso!";
 	}
 
 	public function readAll(){
