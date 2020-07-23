@@ -4,7 +4,7 @@ require_once 'model/database.php';
 
 class cliente {
 	private //$id,
-	$id,
+	//$id,
 	$cnpj,
 	$nomeFantasia,
 	$razaoSocial,
@@ -190,7 +190,7 @@ class cliente {
 		$sql  = "UPDATE cliente";
 		$sql .= " SET $itens";
 		$sql .= " WHERE id=" . $id;
-		
+
 		$db->edit($sql);
 		header("Location: seleciona-cliente.php?r=1");
 		//echo "Dados Cadastrados Com Sucesso!";

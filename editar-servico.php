@@ -5,6 +5,7 @@ if (!isset($_SESSION['login'])){
 	header("Location: index.php");
 }
 require_once 'control/servico.php';
+preencheTipoServico();
 editServico();
 ?>
 <!DOCTYPE html>
@@ -40,15 +41,24 @@ editServico();
 									<form name="formServico" action="editar-servico.php?id=<?php echo $servicoBD['id'];?>" method="POST">
 										<div class="row">
 											<div class="form-group col-md-8">
-												<label for="idServico">Serviço</label>
+												<label for="idServico">Serviço</label><span style="color: red;">  *</span>
 												<input type="text" class="form-control" id="idServico" name="servico" required="" value="<?php echo $servicoBD['servico'];?>">
 											</div>
 											<div class="form-group col-md-2">
-												<label for="idTipo">Tipo</label>
+												<label for="idTipo">Tipo</label><span style="color: red;">  *</span>
 												<select class="form-control mb-3" name="tipo" required="">
+													<option value="<?php echo $servicoBD['tipo']; ?>"><?php echo $servicoBD['tipoServico']; ?></option> 
+													<?php if ($tipoServicosBD) : ?>
+														<?php foreach ($tipoServicosBD as $tipoServicoBD) : ?>
+															<option value="<?php echo $tipoServicoBD['id'];?>"><?php echo $tipoServicoBD['tipoServico'];?></option>
+														<?php endforeach; ?>
+													<?php endif; ?>
+
+													<!--
 													<option value="">Selecione</option>
 													<option value="1" <?=($servicoBD['tipo'] == '1')?'selected':''?>>Administrativo</option>
 													<option value="1" <?=($servicoBD['tipo'] == '2')?'selected':''?>>Consultoria</option>
+												-->
 												</select>
 											</div>
 										</div>

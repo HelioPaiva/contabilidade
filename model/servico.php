@@ -4,7 +4,7 @@ require_once 'model/database.php';
 
 class servico {
 	private
-	$id,
+	//$id,
 	$servico,
 	$tipo,
 	$descricao,
@@ -90,7 +90,8 @@ class servico {
 		$sql = "INSERT INTO servico " . "($columns)" . " VALUES " . "($values);";
 
 		$db->add($sql);
-		echo "Dados Cadastrados Com Sucesso!";
+		header("Location: seleciona-servico.php?r=1");
+		//echo "Dados Cadastrados Com Sucesso!";
 
 	}
 
@@ -109,7 +110,8 @@ class servico {
 		$sql .= " WHERE id=" . $id;
 		
 		$db->edit($sql);
-		echo "Dados Cadastrados Com Sucesso!";
+		header("Location: seleciona-servico.php?r=1");
+		//echo "Dados Cadastrados Com Sucesso!";
 	}
 
 	public function readAll(){
@@ -125,12 +127,29 @@ class servico {
 	public function read($idServico){
 		$db = new database();
 
-		$sql = "SELECT *
-		FROM servico
-		Where id = ".$idServico."
+		$sql = "SELECT s.*,ts.tipoServico
+		FROM servico s
+		LEFT JOIN tipo_servico ts
+		ON s.tipo = ts.id
+		Where s.id = ".$idServico."
 		";
 
 		$result = $db->read($sql);
+		return $result;
+	}
+
+	public function preencheTipoServico(){
+		$db = new database();
+
+		$sql = "SELECT distinct s.tipo as idServico
+		,ts.tipoServico
+        ,ts.id as idTipo
+		FROM tipo_servico ts
+		LEFT JOIN servico s 
+		ON ts.id = s.tipo 
+		";
+
+		$result = $db->readAll($sql);
 		return $result;
 	}
 

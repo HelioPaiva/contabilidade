@@ -1,10 +1,11 @@
 <?php
 session_start();
 if (!isset($_SESSION['login'])){
-  session_destroy();
-  header("Location: index.php");
+	session_destroy();
+	header("Location: index.php");
 }
 require_once 'control/servico.php';
+preencheTipoServico();
 add();
 ?>
 <!DOCTYPE html>
@@ -40,15 +41,18 @@ add();
 									<form name="formServico" action="cadastro-servico.php" method="POST">
 										<div class="row">
 											<div class="form-group col-md-8">
-												<label for="idServico">Serviço</label>
+												<label for="idServico">Serviço</label><span style="color: red;">  *</span>
 												<input type="text" class="form-control" id="idServico" name="servico" required="">
 											</div>
 											<div class="form-group col-md-2">
-												<label for="idTipo">Tipo</label>
+												<label for="idTipo">Tipo</label><span style="color: red;">  *</span>
 												<select class="form-control mb-3" name="tipo" required="">
 													<option value="">Selecione</option>
-													<option value="1">Administrativo</option>
-													<option value="2">Consultoria</option>
+													<?php if ($tipoServicosBD) : ?>
+														<?php foreach ($tipoServicosBD as $tipoServicoBD) : ?>
+															<option value="<?php echo $tipoServicoBD['idTipo'];?>"><?php echo $tipoServicoBD['tipoServico'];?></option>
+														<?php endforeach; ?>
+													<?php endif; ?>
 												</select>
 											</div>
 										</div>

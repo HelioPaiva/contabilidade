@@ -103,7 +103,7 @@ if(isset($_GET['r'])){
         <p>Cadastro Realizado Com Sucesso!</p>
       </div>
       <div class="modal-footer">
-        <a href="cadastro-aluno.php" class="btn btn-primary">OK</a>
+        <a href="seleciona-servico.php" class="btn btn-primary">OK</a>
       </div>
     </div>
   </div>

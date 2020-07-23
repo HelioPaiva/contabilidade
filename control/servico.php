@@ -56,9 +56,12 @@ function editServico(){
 	}
 }
 
-function logout (){
-	session_destroy();
-	header('Location: index.php'); 
+function preencheTipoServico(){
+	$servico = new servico();
+	global $tipoServicosBD;
+	$tipoServicosBD = $servico->preencheTipoServico();
+	//var_dump($tipoServicosBD);
+	//exit();
 }
 
 

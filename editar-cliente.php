@@ -66,7 +66,9 @@ editCliente();
 				return false;    
 			});
 
-			$('#idCEP').blur(function(){
+			/*$('#idCEP').blur(function(){*/
+				$('#idPesquisarCEP').click(function(){
+				
 				/* Configura a requisição AJAX */
 				var cep = document.getElementById("idCEP").value;
 				$.ajax({
@@ -162,7 +164,7 @@ editCliente();
 										</div>
 										<div class="row">
 											<div class="form-group col-md-6">
-												<label for="idRazaoSocial">Razão Social</label>
+												<label for="idRazaoSocial">Razão Social</label><span style="color: red;">  *</span>
 												<div class="custom-file">
 													<input type="text" class="form-control" id="idRazaoSocial" name="razaoSocial" value="<?php echo $clienteBD['razaoSocial'];?>" required="">
 												</div>
@@ -176,18 +178,26 @@ editCliente();
 
 										<div class="row">
 											<div class="form-group col-md-2">
-												<label for="idCEP">CEP</label>
+												<label for="idCEP">CEP</label><span style="color: red;">  *</span>
 												<input type="text" class="form-control" id="idCEP" name="cep" required="" value="<?php echo $clienteBD['cep'];?>" onkeyup="maskCEP(this);" maxlength="9" required="">
 											</div>
+											<div class="form-group col-md-5" style="padding-top: 34px; padding-left: 0px; font-size: 15px;">
+												<button class="btn btn-primary" type="submit" id="idPesquisarCEP">
+													<i class="fas fa-search fa-sm"></i>
+												</button>
+												Importar endereço
+											</div>
+										</div>
+										<div class="row">
 											<div class="form-group col-md-3">
 												<label for="idLogradouro">Endereço</label>
 												<input type="text" class="form-control" id="idLogradouro" name="endereco" value="<?php echo $clienteBD['endereco'];?>">
 											</div>
-											<div class="form-group col-md-2">
+											<div class="form-group col-md-3">
 												<label for="idBairro">Bairro</label>
 												<input type="text" class="form-control" id="idBairro" name="bairro" value="<?php echo $clienteBD['bairro'];?>">
 											</div>
-											<div class="form-group col-md-2">
+											<div class="form-group col-md-3">
 												<label for="idMunicipio">Cidade</label>
 												<input type="text" class="form-control" id="idMunicipio" name="cidade" value="<?php echo $clienteBD['cidade'];?>">
 											</div>
@@ -196,13 +206,13 @@ editCliente();
 												<input type="text" class="form-control" id="idUF" name="uf" value="<?php echo $clienteBD['uf'];?>">
 											</div>
 											<div class="form-group col-md-2">
-												<label for="idNumero">Número / Complemento</label>
+												<label for="idNumero">Número/Complemento</label><span style="color: red;">  *</span>
 												<input type="text" class="form-control" id="idNumero" name="numero" required="" value="<?php echo $clienteBD['numero'];?>">
 											</div>	
 										</div>
 										<div class="row">
 											<div class="form-group col-md-2">
-												<label for="idContato">Contato</label>
+												<label for="idContato">Contato</label><span style="color: red;">  *</span>
 												<input type="text" class="form-control" id="idContato" name="contato" value="<?php echo $clienteBD['contato'];?>" required="">
 											</div>
 											<div class="form-group col-md-4">
@@ -210,7 +220,7 @@ editCliente();
 												<input type="email" class="form-control" id="idEmail" name="email" value="<?php echo $clienteBD['email'];?>">
 											</div>
 											<div class="form-group col-md-3">
-												<label for="idTelefone">Telefone</label>
+												<label for="idTelefone">Telefone</label><span style="color: red;">  *</span>
 												<input type="text" class="form-control" id="idTelefone" name="telefone" required="" value="<?php echo $clienteBD['telefone'];?>">
 											</div>
 											<div class="form-group col-md-3">
