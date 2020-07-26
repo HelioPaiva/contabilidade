@@ -67,7 +67,7 @@ readAllServico();
             <?php foreach ($servicosBD as $servicoBD) : ?>
               <tr>
                 <td><?php echo ucwords(strtolower($servicoBD['servico']));?></td>
-                <td><?php echo $servicoBD['tipo'];?></td>
+                <td><?php echo $servicoBD['tipoServico'];?></td>
                 <td><?php echo ucwords(strtolower($servicoBD['descricao']));?></td>
                 <td>
                   <a href="editar-servico.php?id=<?php echo $servicoBD['id']; ?>" class="btn btn-sm btn-primary">Editar</a>

@@ -71,6 +71,7 @@
       <div class="bg-white py-2 collapse-inner rounded">
         <a class="collapse-item" href="seleciona-lancamento.php">Fluxo de Caixa</a>
         <a class="collapse-item" href="Importar-extrato.php">Importar Extrato Banco</a>
+        <a class="collapse-item" href="seleciona-extrato.php">Consultar Extrato Banco</a>
       </div>
     </div>
   </li>

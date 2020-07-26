@@ -48,6 +48,7 @@ editServico();
 												<label for="idTipo">Tipo</label><span style="color: red;">  *</span>
 												<select class="form-control mb-3" name="tipo" required="">
 													<option value="<?php echo $servicoBD['tipo']; ?>"><?php echo $servicoBD['tipoServico']; ?></option> 
+													
 													<?php if ($tipoServicosBD) : ?>
 														<?php foreach ($tipoServicosBD as $tipoServicoBD) : ?>
 															<option value="<?php echo $tipoServicoBD['id'];?>"><?php echo $tipoServicoBD['tipoServico'];?></option>

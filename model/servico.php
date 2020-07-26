@@ -117,8 +117,10 @@ class servico {
 	public function readAll(){
 		$db = new database();
 
-		$sql = "SELECT * 
-		FROM servico";
+		$sql = "SELECT s.*,ts.tipoServico
+		FROM servico s
+		LEFT JOIN tipo_servico ts
+		ON s.tipo = ts.id";
 
 		$result = $db->readAll($sql);
 		return $result;
@@ -141,13 +143,15 @@ class servico {
 	public function preencheTipoServico(){
 		$db = new database();
 
-		$sql = "SELECT distinct s.tipo as idServico
+		/*$sql = "SELECT distinct s.tipo as idServico
 		,ts.tipoServico
         ,ts.id as idTipo
 		FROM tipo_servico ts
 		LEFT JOIN servico s 
 		ON ts.id = s.tipo 
 		";
+		*/
+		$sql = "SELECT * FROM erp.tipo_servico";
 
 		$result = $db->readAll($sql);
 		return $result;

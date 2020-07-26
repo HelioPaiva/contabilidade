@@ -50,7 +50,7 @@ add();
 													<option value="">Selecione</option>
 													<?php if ($tipoServicosBD) : ?>
 														<?php foreach ($tipoServicosBD as $tipoServicoBD) : ?>
-															<option value="<?php echo $tipoServicoBD['idTipo'];?>"><?php echo $tipoServicoBD['tipoServico'];?></option>
+															<option value="<?php echo $tipoServicoBD['id'];?>"><?php echo $tipoServicoBD['tipoServico'];?></option>
 														<?php endforeach; ?>
 													<?php endif; ?>
 												</select>
