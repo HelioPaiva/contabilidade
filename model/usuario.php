@@ -101,7 +101,8 @@ class usuario {
 		$sql = "INSERT INTO usuario " . "($columns)" . " VALUES " . "($values);";
 
 		$db->add($sql);
-		echo "Dados Cadastrados Com Sucesso!";
+		header("Location: seleciona-usuario.php?r=1");
+		//echo "Dados Cadastrados Com Sucesso!";
 	}
 
 	public function edit(usuario $usuario, $id){
@@ -119,7 +120,8 @@ class usuario {
 		$sql .= " WHERE id=" . $id;
 		
 		$db->edit($sql);
-		echo "Dados Cadastrados Com Sucesso!";
+		header("Location: seleciona-usuario.php?r=1");
+		//echo "Dados Cadastrados Com Sucesso!";
 	}
 
 	public function readAll(){

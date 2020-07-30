@@ -1,6 +1,11 @@
 <?php
-//require_once 'controle/cliente.php';
-//readAll();
+session_start();
+if (!isset($_SESSION['login'])){
+  session_destroy();
+  header("Location: index.php");
+}
+require_once 'control/emissao-nf.php';
+readAllEmissaoNF();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -52,26 +57,18 @@
           </tr>
         </tfoot>
         <tbody>
-          <?php //if ($alunosBD) : ?>
-            <?php //foreach ($clientesBD as $clienteBD) : ?>
+          <?php if ($emissoesBD) : ?>
+            <?php foreach ($emissoesBD as $emissaonfBD) : ?>
               <tr>
-                <td><?php echo '47.866.934/0001-74';//ucwords(strtolower($alunoBD['nome']));?></td>
-                <td><?php echo 'TICKET SERVICOS SA';//$alunoBD['celular'];?></td>
-                <td><?php echo 'ALAOR BARRA AGUIRRE';//ucwords(strtolower($alunoBD['responsavel']));?></td>
+                <td><?php echo $emissaonfBD['cnpj'];?></td>
+                <td><?php echo $emissaonfBD['razaoSocial'];?></td>
+                <td><?php echo ucwords(strtolower($emissaonfBD['contato']));?></td>
                 <td>
-                  <a href="emitir-nf.php?id=<?php //echo $alunoBD['id']; ?>" class="btn btn-sm btn-primary">Emitir Nota Fiscal</a>
+                  <a href="emitir-nf.php?id=<?php echo $emissaonfBD['id']; ?>" class="btn btn-sm btn-primary">Emitir Nota Fiscal</a>
                 </td>
               </tr>
-              <tr>
-                <td><?php echo '60.741.303/0001-97';//ucwords(strtolower($alunoBD['nome']));?></td>
-                <td><?php echo 'AFRICA DDB BRASIL PUBLICIDADE LTDA.';//$alunoBD['celular'];?></td>
-                <td><?php echo 'DM9 HOLDINGS INC';//ucwords(strtolower($alunoBD['responsavel']));?></td>
-                <td>
-                  <a href="emitir-nf.php?id=<?php //echo $alunoBD['id']; ?>" class="btn btn-sm btn-primary">Emitir Nota Fiscal</a>
-                </td>
-              </tr>
-            <?php //endforeach; ?>
-          <?php //endif; ?>
+            <?php endforeach; ?>
+          <?php endif; ?>
         </tbody>
       </table>
     </div>
@@ -91,7 +88,7 @@ if(isset($_GET['r'])){
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabelLogout">Contabilidade</h5>
+        <h5 class="modal-title" id="exampleModalLabelLogout">Clickou</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -100,17 +97,13 @@ if(isset($_GET['r'])){
         <p>Cadastro Realizado Com Sucesso!</p>
       </div>
       <div class="modal-footer">
-        <a href="cadastro-aluno.php" class="btn btn-primary">OK</a>
+        <a href="seleciona-emissao-nf.php" class="btn btn-primary">OK</a>
       </div>
     </div>
   </div>
 </div>
 <?php } ?>
 
-
-
-<!-- Modal Logout -->
-<?php include 'logout.php'; ?>
 
 </div>
 

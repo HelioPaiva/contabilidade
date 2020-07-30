@@ -1,6 +1,12 @@
 <?php
-//require_once 'controle/aluno.php';
-//add();
+session_start();
+if (!isset($_SESSION['login'])){
+	session_destroy();
+	header("Location: index.php");
+}
+require_once 'control/emissao-nf.php';
+readDadosParaEmitirNF();
+preencheComboServico();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -32,30 +38,22 @@
 							<!-- Form Basic -->
 							<div class="card mb-4">
 								<div class="card-body">
-									<form name="formCliente" action="cadastro-cliente.php" method="POST">
+									<form name="formCliente" action="emitir-nf.php?id=<?php echo $dadosEmissaoBD['cnpj']; ?>" method="POST">
 										<div class="row">
 											<div class="form-group col-md-4">
 												<label for="idCNPJ">CNPJ</label>
-												<input type="text" class="form-control" id="idCNPJ" name="cnpj" required="">
+												<input type="text" class="form-control" id="idCNPJ" name="cnpj" readonly="" value="<?php echo $dadosEmissaoBD['cnpj']; ?>">
 											</div>
-											<!--
-											<div class="form-group col-md-5" style="padding-top: 34px; padding-left: 0px; font-size: 15px;">
-												<button class="btn btn-primary" type="button">
-													<i class="fas fa-search fa-sm"></i>
-												</button>
-												Importar informações cadastradas na receita federal
-											</div>
-											-->
 										</div>
 										<div class="row">
 											<div class="form-group col-md-6">
 												<label for="idNomeFantasia">Nome(Fantasia)</label>
-												<input type="text" class="form-control" id="idNomeFantasia" name="nomeFantasia" required="">
+												<input type="text" class="form-control" id="idNomeFantasia" name="nomeFantasia" readonly="" value="<?php echo $dadosEmissaoBD['nomeFantasia']; ?>">
 											</div>
 											<div class="form-group col-md-6">
 												<label for="idRazaoSocial">Razão Social</label>
 												<div class="custom-file">
-													<input type="text" class="form-control" id="idRazaoSocial" name="razaoSocial">
+													<input type="text" class="form-control" id="idRazaoSocial" name="razaoSocial" readonly="" value="<?php echo $dadosEmissaoBD['razaoSocial']; ?>">
 												</div>
 											</div>
 										</div>
@@ -63,45 +61,47 @@
 										<div class="row">
 											<div class="form-group col-md-2">
 												<label for="idCEP">CEP</label>
-												<input type="text" class="form-control" id="idCEP" name="cep" required="">
+												<input type="text" class="form-control" id="idCEP" name="cep" readonly="" value="<?php echo $dadosEmissaoBD['cep']; ?>">
 											</div>
-											<div class="form-group col-md-3">
+										</div>
+										<div class="row">
+											<div class="form-group col-md-4">
 												<label for="idEndereco">Endereço</label>
-												<input type="text" class="form-control" id="idEndereco" name="endereco">
+												<input type="text" class="form-control" id="idEndereco" name="endereco" readonly="" value="<?php echo $dadosEmissaoBD['endereco']; ?>">
 											</div>
 											<div class="form-group col-md-2">
 												<label for="idBairro">Bairro</label>
-												<input type="text" class="form-control" id="idBairro" name="bairro">
+												<input type="text" class="form-control" id="idBairro" name="bairro" readonly="" value="<?php echo $dadosEmissaoBD['bairro']; ?>">
 											</div>
-											<div class="form-group col-md-2">
+											<div class="form-group col-md-3">
 												<label for="idCidade">Cidade</label>
-												<input type="text" class="form-control" id="idCidade" name="cidade">
+												<input type="text" class="form-control" id="idCidade" name="cidade" readonly="" value="<?php echo $dadosEmissaoBD['cidade']; ?>">
 											</div>
 											<div class="form-group col-md-1">
 												<label for="idUF">UF</label>
-												<input type="text" class="form-control" id="idUF" name="uf">
+												<input type="text" class="form-control" id="idUF" name="uf" readonly="" value="<?php echo $dadosEmissaoBD['uf']; ?>">
 											</div>
 											<div class="form-group col-md-2">
 												<label for="idNumero">Número / Complemento</label>
-												<input type="text" class="form-control" id="idNumero" name="numero" required="">
+												<input type="text" class="form-control" id="idNumero" name="numero" readonly="" value="<?php echo $dadosEmissaoBD['numero']; ?>">
 											</div>	
 										</div>
 										<div class="row">
-											<div class="form-group col-md-2">
+											<div class="form-group col-md-3">
 												<label for="idContato">Contato</label>
-												<input type="text" class="form-control" id="idContato" name="contato">
+												<input type="text" class="form-control" id="idContato" name="contato" readonly="" value="<?php echo $dadosEmissaoBD['contato']; ?>">
 											</div>
-											<div class="form-group col-md-4">
+											<div class="form-group col-md-3">
 												<label for="idEmail">E-mail</label>
-												<input type="email" class="form-control" id="idEmail" name="email" required="">
+												<input type="email" class="form-control" id="idEmail" name="email" readonly="" value="<?php echo $dadosEmissaoBD['email']; ?>">
 											</div>
 											<div class="form-group col-md-3">
 												<label for="idTelefone">Telefone</label>
-												<input type="text" class="form-control" id="idTelefone" name="telefone" required="">
+												<input type="text" class="form-control" id="idTelefone" name="telefone" readonly="" value="<?php echo $dadosEmissaoBD['telefone']; ?>">
 											</div>
 											<div class="form-group col-md-3">
 												<label for="idCelular">Celular</label>
-												<input type="text" class="form-control" id="idCelular" name="celular" required="">
+												<input type="text" class="form-control" id="idCelular" name="celular" readonly="" value="<?php echo $dadosEmissaoBD['telefone']; ?>">
 											</div>
 										</div>
 										<div class="row">
@@ -117,8 +117,11 @@
 												<label for="idServico">Serviço</label>
 												<select class="form-control mb-3" name="servico" required="">
 													<option value="">Selecione</option>
-													<option value="1">Vendas</option>
-													<option value="2">Prestação de Serviços</option>
+													<?php if($servicosClienteBD) : ?>
+														<?php foreach ($servicosClienteBD as $servico) : ?>
+															<option value="<?php echo $servico['id']; ?>"><?php echo $servico['servico']; ?></option>
+														<?php endforeach; ?>
+													<?php endif; ?>
 												</select>
 											</div>
 										</div>
@@ -126,11 +129,11 @@
 										<div class="row">
 											<div class="form-group col-md-12">
 												<label for="idObservacao">Observação</label>
-												<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="observacao"></textarea>
+				<textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="obs"></textarea>
 											</div>
 										</div>
 
-										<button type="submit" class="btn btn-primary">Cadastrar</button>
+										<button type="submit" class="btn btn-primary">Emitir NF</button>
 										<a href="seleciona-emissao-nf.php" class="btn btn-danger">Cancelar</a>
 									</form>
 								</div>
@@ -141,9 +144,6 @@
 
 					</div>
 				</div>
-
-				<!-- Modal Logout -->
-				<?php include 'logout.php'; ?>
 
 
 			</div>
