@@ -1,11 +1,11 @@
 <?php
 session_start();
 if (!isset($_SESSION['login'])){
-  session_destroy();
-  header("Location: index.php");
+	session_destroy();
+	header("Location: index.php");
 }
-//require_once 'controle/aluno.php';
-//add();
+require_once 'control/categoria.php';
+add();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,7 +37,7 @@ if (!isset($_SESSION['login'])){
 							<!-- Form Basic -->
 							<div class="card mb-4">
 								<div class="card-body">
-									<form name="formServico" action="cadastro-servico.php" method="POST">
+									<form name="formCategoria" action="cadastro-categoria.php" method="POST">
 										<div class="row">
 											<div class="form-group col-md-8">
 												<label for="idCategoria">Categoria</label>

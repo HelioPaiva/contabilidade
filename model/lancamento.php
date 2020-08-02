@@ -10,6 +10,8 @@ class lancamento {
 	$dataCadastro,
 	$dataModificacao,
 	$dataVencimento,
+	$idUsuario,
+	$idLicenca,
 	$pago;
 
 	/*Gets*/
@@ -38,6 +40,12 @@ class lancamento {
 	}
 	public function getpago(){
 		return $this->pago;
+	}
+	public function getidUsuario(){
+		return $this->idUsuario;
+	}
+	public function getidLicenca(){
+		return $this->idLicenca;
 	}
 
 
@@ -71,6 +79,12 @@ class lancamento {
 	public function setpago($pago){
 		$this->pago = $pago;
 	}
+	public function setidUsuario($idUsuario){
+		$this->idUsuario = $idUsuario;
+	}
+	public function setidLicenca($idLicenca){
+		$this->idLicenca = $idLicenca;
+	}
 
 
 	/*Métodos*/
@@ -90,7 +104,8 @@ class lancamento {
 		$sql = "INSERT INTO lancamento " . "($columns)" . " VALUES " . "($values);";
 
 		$db->add($sql);
-		echo "Dados Cadastrados Com Sucesso!";
+		header("Location: seleciona-lancamento.php?r=1");
+		//echo "Dados Cadastrados Com Sucesso!";
 
 	}
 
@@ -109,7 +124,8 @@ class lancamento {
 		$sql .= " WHERE id=" . $id;
 		
 		$db->edit($sql);
-		echo "Dados Cadastrados Com Sucesso!";
+		header("Location: seleciona-lancamento.php?r=1");
+		//echo "Dados Cadastrados Com Sucesso!";
 	}
 
 	public function readAll(){

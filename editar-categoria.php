@@ -4,8 +4,8 @@ if (!isset($_SESSION['login'])){
   session_destroy();
   header("Location: index.php");
 }
-//require_once 'controle/aluno.php';
-//add();
+require_once 'control/categoria.php';
+editCategoria();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,15 +37,15 @@ if (!isset($_SESSION['login'])){
 							<!-- Form Basic -->
 							<div class="card mb-4">
 								<div class="card-body">
-									<form name="formServico" action="cadastro-servico.php" method="POST">
+									<form name="formCategoria" action="editar-categoria.php?id=<?php echo $categoriaBD['id']; ?>" method="POST">
 										<div class="row">
 											<div class="form-group col-md-8">
 												<label for="idCategoria">Categoria</label>
-												<input type="text" class="form-control" id="idCategoria" name="categoria" required="">
+												<input type="text" class="form-control" id="idCategoria" name="categoria" required="" value="<?php echo $categoriaBD['categoria'];?>">
 											</div>
 										</div>
 
-										<button type="submit" class="btn btn-primary">Atualizars</button>
+										<button type="submit" class="btn btn-primary">Atualizar</button>
 										<a href="seleciona-categoria.php" class="btn btn-danger">Cancelar</a>
 									</form>
 								</div>

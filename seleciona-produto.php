@@ -4,8 +4,8 @@ if (!isset($_SESSION['login'])){
   session_destroy();
   header("Location: index.php");
 }
-//require_once 'controle/servico.php';
-//readAll();
+require_once 'control/produto.php';
+readAllProduto();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -63,26 +63,18 @@ if (!isset($_SESSION['login'])){
             </tr>
         </tfoot>
         <tbody>
-          <?php //if ($servicosBD) : ?>
-            <?php //foreach ($clientesBD as $servicoBD) : ?>
+          <?php if ($produtosBD) : ?>
+            <?php foreach ($produtosBD as $produtoBD) : ?>
               <tr>
-                <td><?php echo '0001';//ucwords(strtolower($servicoBD['nome']));?></td>
-                <td><?php echo 'Mussarela';//$servicoBDBD['celular'];?></td>
-                <td><?php echo '15,00';//ucwords(strtolower($servicoBDBD['responsavel']));?></td>
+                <td><?php echo $produtoBD['id'];?></td>
+                <td><?php echo $produtoBD['produto'];?></td>
+                <td><?php echo $produtoBD['valor'];?></td>
                 <td>
-                  <a href="editar-produto.php?id=<?php //echo $servicoBD['id']; ?>" class="btn btn-sm btn-primary">Editar</a>
+                  <a href="editar-produto.php?id=<?php echo $produtoBD['id']; ?>" class="btn btn-sm btn-primary">Editar</a>
                 </td>
               </tr>
-              <tr>
-                <td><?php echo '0002';//ucwords(strtolower($alunoBD['nome']));?></td>
-                <td><?php echo 'Calabresa';//$alunoBD['celular'];?></td>
-                <td><?php echo '14,00';//ucwords(strtolower($alunoBD['responsavel']));?></td>
-                <td>
-                  <a href="editar-produto.php?id=<?php //echo $servicoBD['id']; ?>" class="btn btn-sm btn-primary">Editar</a>
-                </td>
-              </tr>
-            <?php //endforeach; ?>
-          <?php //endif; ?>
+            <?php endforeach; ?>
+          <?php endif; ?>
         </tbody>
       </table>
     </div>
@@ -102,7 +94,7 @@ if(isset($_GET['r'])){
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabelLogout">Portal Mori</h5>
+        <h5 class="modal-title" id="exampleModalLabelLogout">Clickou</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -111,7 +103,7 @@ if(isset($_GET['r'])){
         <p>Cadastro Realizado Com Sucesso!</p>
       </div>
       <div class="modal-footer">
-        <a href="cadastro-aluno.php" class="btn btn-primary">OK</a>
+        <a href="seleciona-produto.php" class="btn btn-primary">OK</a>
       </div>
     </div>
   </div>

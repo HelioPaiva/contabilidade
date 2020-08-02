@@ -8,8 +8,9 @@ function add(){
 		$today = date_create('now', new DateTimeZone('America/Sao_Paulo'));
 		$dataCadastro = $today->format("Y-m-d H:i:s");
 		$dataModificacao = $today->format("Y-m-d H:i:s");
-		//$idUsuario = '0000';
-		//$cnpjClienteCadastro = '9999';
+		$idUsuario = $_SESSION['idUsuario'];
+		$idLicenca = $_SESSION['licenca'];
+
 
 		
 		//$lancamento->setid($_POST['id']);
@@ -20,7 +21,8 @@ function add(){
 		$lancamento->setdataModificacao($dataModificacao);
 		$lancamento->setdataVencimento($_POST['dataVencimento']);
 		$lancamento->setpago($_POST['pago']);
-
+		$lancamento->setidUsuario($idUsuario);
+		$lancamento->setidLicenca($idLicenca);	
 		$lancamento->add($lancamento);
 	}
 }
@@ -40,8 +42,8 @@ function editLancamento(){
 			$today = date_create('now', new DateTimeZone('America/Sao_Paulo'));
 			$dataCadastro = $today->format("Y-m-d H:i:s");
 			$dataModificacao = $today->format("Y-m-d H:i:s");
-			//$idUsuario = '0000';
-			//$cnpjClienteCadastro = '9999';
+			$idUsuario = $_SESSION['idUsuario'];
+			$idLicenca = $_SESSION['licenca'];
 			
 			//$lancamento->setid($_POST['id']);
 			$lancamento->setdescricao($_POST['descricao']);
@@ -51,7 +53,8 @@ function editLancamento(){
 			$lancamento->setdataModificacao($dataModificacao);
 			$lancamento->setdataVencimento($_POST['dataVencimento']);
 			$lancamento->setpago($_POST['pago']);
-
+			$lancamento->setidUsuario($idUsuario);
+			$lancamento->setidLicenca($idLicenca);
 			$lancamento->edit($lancamento,$id);
 		}else{
 			$lancamento = new lancamento();

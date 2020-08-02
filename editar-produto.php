@@ -4,8 +4,8 @@ if (!isset($_SESSION['login'])){
   session_destroy();
   header("Location: index.php");
 }
-//require_once 'controle/aluno.php';
-//add();
+require_once 'control/produto.php';
+editProduto();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,15 +37,15 @@ if (!isset($_SESSION['login'])){
 							<!-- Form Basic -->
 							<div class="card mb-4">
 								<div class="card-body">
-									<form name="formServico" action="cadastro-servico.php" method="POST">
+									<form name="formProduto" action="editar-produto.php?id=<?php echo $produtoBD['id'];?>" method="POST">
 										<div class="row">
 											<div class="form-group col-md-8">
 												<label for="idProduto">Produto</label>
-												<input type="text" class="form-control" id="idServico" name="servico" required="">
+												<input type="text" class="form-control" id="idProduto" name="produto" required="" value="<?php echo $produtoBD['produto'];?>">
 											</div>
 											<div class="form-group col-md-2">
 												<label for="idProduto">Valor Unitário (R$)</label>
-												<input type="text" class="form-control" id="idProduto" name="produto" required="">
+												<input type="text" class="form-control" id="idValor" name="valor" required="" value="<?php echo $produtoBD['valor'];?>">
 											</div>
 										</div>
 

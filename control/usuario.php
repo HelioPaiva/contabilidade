@@ -10,6 +10,7 @@ function add(){
 		$dataModificacao = $today->format("Y-m-d H:i:s");
 		$status = 1;
 		$password = "123";
+		$idLicenca = $_SESSION['licenca'];
 		
 		$usuario->setnome($_POST['nome']);
 		$usuario->setsexo($_POST['sexo']);
@@ -20,6 +21,7 @@ function add(){
 		$usuario->setdataCadastro($dataCadastro);
 		$usuario->setdataModificacao($dataModificacao);
 		$usuario->setobs($_POST['obs']);
+		$usuario->setidLicenca($idLicenca);
 		$usuario->add($usuario);
 	}
 }
@@ -40,6 +42,7 @@ function editUsuario(){
 			$dataModificacao = $today->format("Y-m-d H:i:s");
 			$status = 1;
 			$password = "123";
+			$idLicenca = $_SESSION['licenca'];
 
 			$usuario->setnome($_POST['nome']);
 			$usuario->setsexo($_POST['sexo']);
@@ -50,6 +53,7 @@ function editUsuario(){
 			$usuario->setdataCadastro($dataCadastro);
 			$usuario->setdataModificacao($dataModificacao);
 			$usuario->setobs($_POST['obs']);
+			$usuario->setidLicenca($idLicenca);
 			$usuario->edit($usuario,$id);
 		}else{
 			$usuario = new usuario();
@@ -78,10 +82,11 @@ function login (){
 		$usuarioBD = $usuario->login($email,$password);
 		if ($usuarioBD['email'] == $email && $usuarioBD['password'] == $password && $usuarioBD['idStatus'] == 1) {
 			$_SESSION['idUsuario'] = $usuarioBD['id'];
-			$_SESSION['idEmail'] = $email;
+			$_SESSION['email'] = $email;
 			$_SESSION['nome'] = $usuarioBD['nome'];
 			$_SESSION['perfil'] = $usuarioBD['perfil'];
 			$_SESSION['sexo'] = $usuarioBD['sexo'];
+			$_SESSION['licenca'] = $usuarioBD['idLicenca'];
 			$_SESSION['login'] = true;
 			header('Location: home.php');
 		}else{

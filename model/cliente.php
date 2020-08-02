@@ -22,7 +22,7 @@ class cliente {
 	$dataCadastro,
 	$dataModificacao,
 	$idUsuario,
-	$cnpjClienteCadastro;
+	$idLicenca;
 
 
 	/*Gets*/
@@ -85,8 +85,8 @@ class cliente {
 	public function getidUsuario(){
 		return $this->idUsuario;
 	}
-	public function getcnpjClienteCadastro(){
-		return $this->cnpjClienteCadastro;
+	public function getidLicenca(){
+		return $this->idLicenca;
 	}
 
 
@@ -150,8 +150,8 @@ class cliente {
 	public function setidUsuario($idUsuario){
 		$this->idUsuario = $idUsuario;
 	}
-	public function setcnpjClienteCadastro($cnpjClienteCadastro){
-		$this->cnpjClienteCadastro = $cnpjClienteCadastro;
+	public function setidLicenca($idLicenca){
+		$this->idLicenca = $idLicenca;
 	}
 
 

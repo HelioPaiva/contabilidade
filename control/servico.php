@@ -8,17 +8,17 @@ function add(){
 		$today = date_create('now', new DateTimeZone('America/Sao_Paulo'));
 		$dataCadastro = $today->format("Y-m-d H:i:s");
 		$dataModificacao = $today->format("Y-m-d H:i:s");
-		$idUsuario = '0000';
-		$cnpjClienteCadastro = '9999';
+		$idUsuario = $_SESSION['idUsuario'];
+		$idLicenca = $_SESSION['licenca'];
 
 		//$servico->setid($_POST['id']);
 		$servico->setservico($_POST['servico']);
 		$servico->settipo($_POST['tipo']);
 		$servico->setdescricao($_POST['descricao']);
-		$servico->setcnpjClienteCadastro($cnpjClienteCadastro);
 		$servico->setdataCadastro($dataCadastro);
 		$servico->setdataModificacao($dataModificacao);
-		$servico->setidUsuario($idUsuario);	
+		$servico->setidUsuario($idUsuario);
+		$servico->setidLicenca($idLicenca);	
 		$servico->add($servico);
 	}
 }
@@ -36,17 +36,19 @@ function editServico(){
 		$id = $_GET['id'];
 		if (isset($_POST['servico'])) {
 			$today = date_create('now', new DateTimeZone('America/Sao_Paulo'));
+			$dataCadastro = $today->format("Y-m-d H:i:s");
 			$dataModificacao = $today->format("Y-m-d H:i:s");
-			$idUsuario = '0000';
-			$cnpjClienteCadastro = '9999';
+			$idUsuario = $_SESSION['idUsuario'];
+			$idLicenca = $_SESSION['licenca'];
 			
 			//$servico->setid($_POST['id']);
 			$servico->setservico($_POST['servico']);
 			$servico->settipo($_POST['tipo']);
 			$servico->setdescricao($_POST['descricao']);
-			$servico->setcnpjClienteCadastro($cnpjClienteCadastro);
+			$servico->setdataCadastro($dataCadastro);
 			$servico->setdataModificacao($dataModificacao);
-			$servico->setidUsuario($idUsuario);	
+			$servico->setidUsuario($idUsuario);
+			$servico->setidLicenca($idLicenca);	
 			$servico->edit($servico,$id);
 		}else{
 			$servico = new servico();

@@ -10,6 +10,8 @@ class emissaoNF{
 	$servico,
 	$obs,
 	$dataCadastro,
+	$idUsuario,
+	$idLicenca,
 	$dataModificacao;
 
 	public function getCNPJ(){
@@ -33,6 +35,14 @@ class emissaoNF{
 	public function getDataModificacao(){
 		return $this-> dataModificacao;
 	}
+	public function getidUsuario(){
+		return $this-> idUsuario;
+	}
+	public function getidLicenca(){
+		return $this-> idLicenca;
+	}
+
+
 
 	public function setCNPJ($cnpj){
 		$this-> cnpj = $cnpj;
@@ -54,6 +64,12 @@ class emissaoNF{
 	}
 	public function setDataModificacao($dataModificacao){
 		$this-> dataModificacao = $dataModificacao;
+	}
+	public function setidUsuario($idUsuario){
+		$this-> idUsuario = $idUsuario;
+	}
+	public function setidLicenca($idLicenca){
+		$this-> idLicenca = $idLicenca;
 	}
 
 	public function add(emissaoNF $emissao){

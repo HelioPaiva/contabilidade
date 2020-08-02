@@ -15,8 +15,8 @@ function readDadosParaEmitirNF(){
 			$emissaonf = new emissaoNF();
 			$today = date_create('now', new DateTimeZone('America/Sao_Paulo'));
 			$dataCadastro = $today->format("Y-m-d H:i:s");
-			$idUsuario = '0000';
-			$cnpjClienteCadastro = '9999';
+			$idUsuario = $_SESSION['idUsuario'];
+			$idLicenca = $_SESSION['licenca'];
 			
 			$emissaonf->setCNPJ($_POST['cnpj']);
 			$emissaonf->setValor($_POST['valor']);
@@ -25,6 +25,8 @@ function readDadosParaEmitirNF(){
 			$emissaonf->setObs($_POST['obs']);
 			$emissaonf->setDataCadastro($dataCadastro);
 			$emissaonf->setDataModificacao($dataCadastro);
+			$emissaonf->setidUsuario($idUsuario);
+			$emissaonf->setidLicenca($idLicenca);
 			$emissaonf->add($emissaonf);
 
 		}else{
@@ -37,8 +39,8 @@ function readDadosParaEmitirNF(){
 
 function preencheComboServico(){
 	$emissaonf = new emissaoNF();
-  	global $servicosClienteBD;
-  	$servicosClienteBD = $emissaonf->readServicos();
+	global $servicosClienteBD;
+	$servicosClienteBD = $emissaonf->readServicos();
 
 
   //$cnpjCliente = $_SESSION['cnpjCliente'];

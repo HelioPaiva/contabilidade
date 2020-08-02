@@ -8,8 +8,8 @@ function add(){
 		$today = date_create('now', new DateTimeZone('America/Sao_Paulo'));
 		$dataCadastro = $today->format("Y-m-d H:i:s");
 		$dataModificacao = $today->format("Y-m-d H:i:s");
-		$idUsuario = '0000';
-		$cnpjClienteCadastro = '9999';
+		$idUsuario = $_SESSION['idUsuario'];
+		$idLicenca = $_SESSION['licenca'];
 
 		
 		//$cliente->setidCliente($_POST['id']);
@@ -30,7 +30,7 @@ function add(){
 		$cliente->setdataCadastro($dataCadastro);
 		$cliente->setdataModificacao($dataModificacao);
 		$cliente->setidUsuario($idUsuario);
-		$cliente->setcnpjClienteCadastro($cnpjClienteCadastro);
+		$cliente->setidLicenca($idLicenca);
 		$cliente->add($cliente);
 	}
 }
@@ -49,9 +49,9 @@ function editCliente(){
 		if (isset($_POST['cnpj'])) {
 			$today = date_create('now', new DateTimeZone('America/Sao_Paulo'));
 			$dataModificacao = $today->format("Y-m-d H:i:s");
-			$idUsuario = '0000';
-			$cnpjClienteCadastro = '9999';
-			
+			$idUsuario = $_SESSION['idUsuario'];
+			$idLicenca = $_SESSION['licenca'];
+
 			//$cliente->setid($_POST['id']);
 			//$cliente->setidCliente($_POST['id']);
 			$cliente->setcnpj($_POST['cnpj']);
@@ -70,7 +70,7 @@ function editCliente(){
 			$cliente->setobs($_POST['obs']);
 			$cliente->setdataModificacao($dataModificacao);
 			$cliente->setidUsuario($idUsuario);
-			$cliente->setcnpjClienteCadastro($cnpjClienteCadastro);
+			$cliente->setidLicenca($idLicenca);
 			$cliente->edit($cliente,$id);
 		}else{
 			$cliente = new cliente();

@@ -12,6 +12,7 @@ class usuario {
 	$idPerfil,
 	$dataCadastro,
 	$dataModificacao,
+	$idLicenca,
 	$obs;
 
 	/*Gets*/
@@ -43,6 +44,9 @@ class usuario {
 	}
 	public function getdataModificacao(){
 		return $this-> dataModificacao;
+	}
+	public function getidLicenca(){
+		return $this-> idLicenca;
 	}
 	public function getobs(){
 		return $this-> obs;
@@ -78,6 +82,9 @@ class usuario {
 	}
 	public function setdataModificacao($dataModificacao){
 		$this-> dataModificacao = $dataModificacao;
+	}
+	public function setidLicenca($idLicenca){
+		$this-> idLicenca = $idLicenca;
 	}
 	public function setobs($obs){
 		$this-> obs = $obs;

@@ -85,7 +85,7 @@ function add(){
 					$tipo = 2;
 				}
 				//Cria query
-				$sql = "insert into extrato_bancario(numBanco,numAgencia,numConta,tipo,descricao,valor,data,dataCadastro) values('341','".$agencia."','".$conta."','".$tipo."','". $array[1] ."','".number_format($array[3], 2, '.', '')."','".$dataExtrato."','".$dataCadastro."')";
+				$sql = "insert into extrato_bancario(numBanco,numAgencia,numConta,tipo,descricao,valor,data,dataCadastro,idUsuario,idLicenca) values('341','".$agencia."','".$conta."','".$tipo."','". $array[1] ."','".number_format($array[3], 2, '.', '')."','".$dataExtrato."','".$dataCadastro."','".$_SESSION['idUsuario']."','".$_SESSION['licenca']."')";
 
 				//Grava no banco de dados
 				$importacaoExtrato->add($sql);
